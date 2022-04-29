@@ -1,0 +1,28 @@
+{
+  "cars": [
+    {
+      "category": "Sedan",
+      "availability": true,
+      "brand": "BMW",
+      "model": "320i",
+      "modelYear": 2015,
+      "mileage": 6000,
+      "fuelType": "petrol",
+      "seats": 5,
+      "pricePerDay": 150,
+      "description": ""
+    },
+    {
+      "category": "Sedan",
+      "availability": true,
+      "brand": "Toyota",
+      "model": "Camry",
+      "modelYear": 2013,
+      "mileage": 10000,
+      "fuelType": "petrol",
+      "seats": 5,
+      "pricePerDay": 120,
+      "description": ""
+    }
+  ]
+}
