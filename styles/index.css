@@ -1,0 +1,48 @@
+:root {
+  --brand-color: #ffd100;
+}
+
+.navbar {
+  height: 6vh;
+}
+
+.navbar-brand {
+  font-size: 2em;
+  font-style: italic;
+  color: var(--brand-color);
+}
+
+.nav-link {
+  font-size: 1.2em;
+}
+
+.container-fluid {
+  margin: 0 20px; 
+  padding-top: 10px; 
+  padding-bottom: 10px;
+}
+
+.container-cards {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.row {
+  margin: 15px 0;
+}
+
+.col:nth-of-type(-n+4) {
+  margin-top: 20px;
+}
+
+.col:nth-last-child(-n+2) {
+  margin-bottom: 20px;
+}
+
+.text-center {
+  color: var(--brand-color);
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

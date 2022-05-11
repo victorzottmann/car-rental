@@ -1,37 +1,33 @@
-function addCarToList(cars) {
-  const div = document.querySelector('.cars');
-  const ul = document.createElement('ul');
+function addItemToCard(cars) {
+  // const ul = document.createElement('ul');
 
   cars.forEach((car) => {
-    let li = document.createElement('li');
+    // let li = document.createElement('li');
 
-    for(let i in car) {
-      li.innerHTML += `
-        <p><span class="property">${i}:</span> ${car[i]}</p>
-      `;
-    }
+    // for(let i in car) {
+    //   li.innerHTML += `
+    //     <p><span class="property">${i}:</span> ${car[i]}</p>
+    //   `;
+    // }
 
-    ul.appendChild(li);
-  })
+    // ul.appendChild(li);
+    console.log(car);
+  });
 
-  div.appendChild(ul);
+  // $('.card').append(ul);
 }
 
 function getCars() {
   try {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', './data/cars.json', true);
-    
-    xhr.onload = function () { 
-      if (this.status == 200) {
-        const data = JSON.parse(this.responseText);
+    $.ajax({
+      type: "GET",
+      url: "../data/cars.json",
+      success: function (data) {
         const cars = data.cars;
-        
-        addCarToList(cars);
+        console.log('[ajax cars]:', cars);
+        addItemToCard(cars);
       }
-    }
-
-    xhr.send();
+    });
   } catch (error) {
     console.log(error);
   }
