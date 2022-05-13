@@ -46,3 +46,34 @@
   align-items: center;
   justify-content: center;
 }
+
+.btn-reserve {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  /* width: 100px; */
+  padding: 5px 10px;
+  color: black;
+  background-color: var(--brand-color);
+}
+
+.btn-reserve:hover {
+  background-color: #e3ba03;
+}
+
+.btn-disabled {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  width: 120px;
+  padding: 5px 10px; 
+  font-weight: lighter;
+}
+
+.car-available {
+  color: green;
+}
+
+.car-unavailable {
+  color: red;
+}

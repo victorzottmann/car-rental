@@ -1,36 +1,49 @@
-function addItemToCard(cars) {
-  // const ul = document.createElement('ul');
+function showCar(car) {
+  let carAvailable = car.availability ? "Available" : "Unavailable";
+  let className = car.availability ? "car-available" : "car-unavailable";
 
-  cars.forEach((car) => {
-    // let li = document.createElement('li');
-
-    // for(let i in car) {
-    //   li.innerHTML += `
-    //     <p><span class="property">${i}:</span> ${car[i]}</p>
-    //   `;
-    // }
-
-    // ul.appendChild(li);
-    console.log(car);
-  });
-
-  // $('.card').append(ul);
+  let output = `
+    <div class="col">
+      <div class="card h-100">
+        <img 
+          src="./img/${car.model.split("-").join("").toLowerCase()}.jpeg" 
+          class="card-img-top" 
+          alt="Image of the car ${car.brand} ${car.model}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">${car.brand} ${car.model}</h5><br />
+          <p class="card-text">Mileage: <span class="">${car.mileage} Km</span></p>
+          <p class="card-text">Fuel type: <span>${car.fuelType}</span></p>
+          <p class="card-text">Price per day: <span>${car.pricePerDay}</span></p>
+          <p class="card-text"><span class="${className}">${carAvailable}</span></p>
+          ${createReserveBtn(car)}
+        </div>
+      </div>
+    </div>
+  `;
+  $('.row').append(output);
 }
 
-function getCars() {
+function createReserveBtn(car) {
+  let available = car.availability;
+
+  if (available) {
+    return `<button class="btn-reserve">Add to Cart</button>`;
+  } else {
+    return "";
+  }
+}
+
+(function getCars() {
   try {
     $.ajax({
       type: "GET",
       url: "../data/cars.json",
-      success: function (data) {
-        const cars = data.cars;
-        console.log('[ajax cars]:', cars);
-        addItemToCard(cars);
-      }
+      success: ({ cars }) => cars.forEach(car => showCar(car))
     });
   } catch (error) {
     console.log(error);
   }
-}
+})();
 
-getCars();
+
