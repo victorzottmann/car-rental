@@ -33,10 +33,12 @@ $(document).ready(function() {
       let carMileage = $(`#${car.model}-mileage`).text();
       let carFuel = $(`#${car.model}-fuel`).text();
       let carPrice = $(`#${car.model}-price`).text();
+      let carModel = car.model;
       let carStatus = car.availability;
       
       let carObject = {
         name: carName,
+        model: carModel,
         mileage: carMileage,
         fuel: carFuel,
         price: parseFloat(carPrice),
@@ -79,7 +81,6 @@ $(document).ready(function() {
   
   function calculateTotalCost(carObject) {
     let cartCost = sessionStorage.getItem('totalCost');
-    console.log('[cartCost]', cartCost);
     
     if (cartCost != null) {
       cartCost = parseFloat(cartCost);
@@ -89,6 +90,34 @@ $(document).ready(function() {
     }
   }
 
+  function displayItemsOnCart() {
+    let items = sessionStorage.getItem('cars');
+    items = JSON.parse(items);
+    
+    let cars = [];
+    
+    for (let i in items) {
+      cars.push(items[i]);
+    }
+    
+    let output = "";
+    for (let car of cars) {
+      console.log(car);
+      output += `
+      <tr>
+        <td><img src="./img/${car.model}.jpeg" alt=""></td>
+        <td>${car.name}</td>
+        <td>$${car.price}</td>
+        <td><input type="number" value="1" min="1" max="31"></td>
+        <td><button class="btn-remove">Remove</button></td>
+      </tr>
+      `
+    }
+
+    $('.cart-table').append(output);
+  }
+
+  displayItemsOnCart();
 
   function onLoadCartCount() {
     let totalAddedToCart = sessionStorage.getItem('cartNumbers'); // returns a string
