@@ -1,5 +1,6 @@
 :root {
   --brand-color: #ffd100;
+  --brand-color-hover: #e3ba03; 
 }
 
 .navbar {
@@ -9,12 +10,32 @@
 .navbar-brand {
   font-size: 2em;
   font-style: italic;
-  color: var(--brand-color);
+  color: var(--brand-color) !important;
+}
+
+.nav-item:nth-child(1) {
+  margin-right: 10px;
+}
+
+.nav-item:nth-child(2) {
+  background-color: var(--brand-color);
+  border-radius: 10px;
+  width: 90px;
+  text-align: center;
+}
+
+.nav-item:nth-child(2):hover {
+  background-color: var(--brand-color-hover);
 }
 
 .nav-link {
   font-size: 1.2em;
 }
+
+#nav-link-cart {
+  color: black !important;
+}
+
 
 .container-fluid {
   margin: 0 20px; 
@@ -51,14 +72,13 @@
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  /* width: 100px; */
   padding: 5px 10px;
   color: black;
   background-color: var(--brand-color);
 }
 
 .btn-reserve:hover {
-  background-color: #e3ba03;
+  background-color: var(--brand-color-hover);
 }
 
 .btn-disabled {

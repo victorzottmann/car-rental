@@ -31,8 +31,43 @@ $(document).ready(function() {
       if (!car.availability) {
         console.log("You cannot reserve this car at the moment");
       } 
+      cartNumbers();
     });
   }
+
+
+  let products = [
+    {
+      name: "Grey Shirt",
+      tag: "greyshirt",
+      price: 15,
+      inCart: 0,
+    }
+  ]
+
+  
+  function onLoadCartNumbers() {
+    let productNumbers = localStorage.getItem('cartNumbers'); // returns a string
+    if (productNumbers) {
+      $('.cart-count').text(productNumbers)
+    }
+  }
+  onLoadCartNumbers();
+
+
+  function cartNumbers() {
+    let productNumbers = localStorage.getItem('cartNumbers'); // returns a string
+    productNumbers = parseInt(productNumbers);
+    
+    if (productNumbers) {
+      localStorage.setItem('cartNumbers', productNumbers += 1);
+      $('.cart-count').text(productNumbers)
+    } else {
+      localStorage.setItem('cartNumbers', 1);
+      $('.cart-count').text(1)
+    }
+  }
+
   
   (function getCars() {
     try {
