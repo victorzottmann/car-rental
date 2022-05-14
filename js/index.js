@@ -53,7 +53,7 @@ $(document).ready(function() {
         alert("This car is currently unavailable. Please select another car.");
       }
     });
-
+    
   }
 
   function storeItem(carObject) {
@@ -115,6 +115,7 @@ $(document).ready(function() {
     }
 
     $('.cart-table').append(output);
+    $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'))
   }
 
   displayItemsOnCart();
