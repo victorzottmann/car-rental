@@ -28,14 +28,13 @@ $(document).ready(function() {
     $('.row').append(output);
 
     $(`#btn-${car.model}`).click(() => { 
-      cartNumbers();
-
+      
       let carName = $(`#${car.model}-name`).text();
       let carMileage = $(`#${car.model}-mileage`).text();
       let carFuel = $(`#${car.model}-fuel`).text();
       let carPrice = $(`#${car.model}-price`).text();
       let carStatus = car.availability;
-
+      
       let carObject = {
         name: carName,
         mileage: carMileage,
@@ -43,19 +42,20 @@ $(document).ready(function() {
         price: parseFloat(carPrice),
         inCart: 0,
       }
-
+      
       if (carStatus) {
+        updateCartCount();
         storeItem(carObject);
+        calculateTotalCost(carObject);
       } else {
-        console.log("You can't add this car");
+        alert("This car is currently unavailable. Please select another car.");
       }
-
-
     });
+
   }
 
   function storeItem(carObject) {
-    let cartItems = sessionStorage.getItem('productsInCart');
+    let cartItems = sessionStorage.getItem('cars');
     cartItems = JSON.parse(cartItems);
 
     if (cartItems != null) {
@@ -73,32 +73,45 @@ $(document).ready(function() {
       }
     }
 
-    sessionStorage.setItem("productsInCart", JSON.stringify(cartItems));
+    sessionStorage.setItem("cars", JSON.stringify(cartItems));
   }
 
-
-  function onLoadCartNumbers() {
-    let productNumbers = sessionStorage.getItem('cartNumbers'); // returns a string
-    if (productNumbers) {
-      $('.cart-count').text(productNumbers)
+  
+  function calculateTotalCost(carObject) {
+    let cartCost = sessionStorage.getItem('totalCost');
+    console.log('[cartCost]', cartCost);
+    
+    if (cartCost != null) {
+      cartCost = parseFloat(cartCost);
+      sessionStorage.setItem('totalCost', cartCost += carObject.price);
+    } else {
+      sessionStorage.setItem('totalCost', carObject.price);
     }
   }
-  onLoadCartNumbers();
 
 
-  function cartNumbers() {
-    let productNumbers = sessionStorage.getItem('cartNumbers'); // returns a string
-    productNumbers = parseInt(productNumbers);
+  function onLoadCartCount() {
+    let totalAddedToCart = sessionStorage.getItem('cartNumbers'); // returns a string
+    if (totalAddedToCart) {
+      $('.cart-count').text(totalAddedToCart)
+    }
+  }
+  onLoadCartCount();
+
+
+  function updateCartCount() {
+    let totalAddedToCart = sessionStorage.getItem('carsAddedToCart'); // returns a string
+    totalAddedToCart = parseInt(totalAddedToCart);
     
-    if (productNumbers) {
-      sessionStorage.setItem('cartNumbers', productNumbers += 1);
-      $('.cart-count').text(productNumbers)
+    if (totalAddedToCart) {
+      sessionStorage.setItem('carsAddedToCart', totalAddedToCart += 1);
+      $('.cart-count').text(totalAddedToCart)
     } else {
-      sessionStorage.setItem('cartNumbers', 1);
+      sessionStorage.setItem('carsAddedToCart', 1);
       $('.cart-count').text(1)
     }
   }
-  
+
   
   (function getCars() {
     try {
