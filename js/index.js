@@ -4,13 +4,13 @@ $(document).ready(function() {
     let carAvailable = car.availability ? "Available" : "Unavailable";
     let className = car.availability ? "car-available" : "car-unavailable";
   
-    const lowerCaseCarModel = car.model.split("-").join("").toLowerCase()
+    const carModelLowerCase = car.model.split("-").join("").toLowerCase();
 
     let output = `
       <div class="col">
         <div class="card h-100">
           <img 
-            src="./img/${lowerCaseCarModel}.jpeg" 
+            src="./img/${carModelLowerCase}.jpeg" 
             class="card-img-top" 
             alt="Image of the car ${car.brand} ${car.model}"
           />
@@ -108,12 +108,15 @@ $(document).ready(function() {
       <tr>
         <td><img src="./img/${car.model}.jpeg" alt=""></td>
         <td>${car.name}</td>
-        <td>${car.inCart}</td>
+        <td>
+          
+          ${car.inCart}
+        </td>
         <td>$${car.price}</td>
         <td><input type="number" value="1" min="1" max="31"></td>
         <td><button class="btn-remove">Remove</button></td>
       </tr>
-      `
+      `;
     }
 
     $('.cart-table').append(output);
@@ -157,6 +160,8 @@ $(document).ready(function() {
     }
   })();
 })
+
+
 
 
 

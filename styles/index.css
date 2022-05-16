@@ -36,7 +36,6 @@
   color: black !important;
 }
 
-
 .container-fluid {
   margin: 0 20px; 
   padding-top: 10px; 
@@ -58,14 +57,6 @@
 
 .col:nth-last-child(-n+2) {
   margin-bottom: 20px;
-}
-
-.text-center {
-  color: var(--brand-color);
-  height: 7vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .btn-reserve {
@@ -132,6 +123,9 @@ input[type=number] {
 }
 
 footer {
-  height: 7vh;
+  color: var(--brand-color);
+  height: 9vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
