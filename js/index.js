@@ -49,6 +49,7 @@ $(document).ready(function() {
         updateCartCount();
         storeItem(carObject);
         calculateTotalCost(carObject);
+        alert(`${carObject.name} was successfuly added to the cart.`)
       } else {
         alert("This car is currently unavailable. Please select another car.");
       }
@@ -102,11 +103,12 @@ $(document).ready(function() {
     
     let output = "";
     for (let car of cars) {
-      console.log(car);
+      console.log("[car]", car);
       output += `
       <tr>
         <td><img src="./img/${car.model}.jpeg" alt=""></td>
         <td>${car.name}</td>
+        <td>${car.inCart}</td>
         <td>$${car.price}</td>
         <td><input type="number" value="1" min="1" max="31"></td>
         <td><button class="btn-remove">Remove</button></td>
@@ -117,8 +119,8 @@ $(document).ready(function() {
     $('.cart-table').append(output);
     $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'))
   }
-
   displayItemsOnCart();
+
 
   function onLoadCartCount() {
     let totalAddedToCart = sessionStorage.getItem('cartNumbers'); // returns a string
