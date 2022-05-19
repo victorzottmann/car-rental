@@ -35,8 +35,10 @@ $(document).ready(function() {
       let carPrice = $(`#${car.model}-price`).text();
       let carModel = car.model;
       let carStatus = car.availability;
+      let carTag = carName.replace(/ /g, "").toLowerCase();
       
       let carObject = {
+        tag: carTag,
         name: carName,
         model: carModel,
         mileage: carMileage,
@@ -44,7 +46,7 @@ $(document).ready(function() {
         price: parseFloat(carPrice),
         inCart: 0,
       }
-      
+
       if (carStatus) {
         updateCartCount();
         storeItem(carObject);
@@ -62,17 +64,17 @@ $(document).ready(function() {
     cartItems = JSON.parse(cartItems);
 
     if (cartItems != null) {
-      if (cartItems[carObject.name] == undefined) {
+      if (cartItems[carObject.tag] == undefined) {
         cartItems = {
           ...cartItems,
-          [carObject.name]: carObject
+          [carObject.tag]: carObject
         }
       }
-      cartItems[carObject.name].inCart += 1;
+      cartItems[carObject.tag].inCart += 1;
     } else {
       carObject.inCart = 1;
       cartItems = {
-        [carObject.name]: carObject
+        [carObject.tag]: carObject
       }
     }
 
@@ -91,6 +93,7 @@ $(document).ready(function() {
     }
   }
 
+
   function displayCart() {
     let cartCost = sessionStorage.getItem('totalCost')
     let cartItems = sessionStorage.getItem('cars');
@@ -98,12 +101,13 @@ $(document).ready(function() {
     
     let output = "";
     let basket = "";
+
     if (cartItems) {
       Object.values(cartItems).map(car => {
         output += `
-        <tr>
+        <tr id="${car.tag}" class="car-row">
           <td><img src="./img/${car.model}.jpeg" alt=""></td>
-          <td>${car.name}</td>
+          <td id="${car.name}">${car.name}</td>
           <td>
             <button class="btn-quantity btn-quantity-minus">-</button>
             ${car.inCart}
@@ -112,7 +116,7 @@ $(document).ready(function() {
           <td>$${car.price}.00</td>
           <td><input type="number" value="1" min="1" max="31"></td>
           <td>$${car.price * car.inCart}.00</td>
-          <td><button class="btn-remove">Remove</button></td>
+          <td><button id="${car.tag}" class="btn-remove">Remove</button></td>
         </tr>
         `;
       });
@@ -128,68 +132,54 @@ $(document).ready(function() {
         </div>
       `;
     }
+    removeFromCart();
 
     $('.cart-table').append(output);
-    $('.cart-container').append(basket)
-    $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'))
+    $('.cart-container').append(basket);
+    $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'));
   }
   displayCart();
 
+
   function removeFromCart() {
     let removeButtons = document.querySelectorAll('.btn-remove');
-    let names = [];
 
-    for (let i = 0; i < removeButtons.length; i++) {
-      names.push(removeButtons[i].parentElement.parentElement);
-    }
+    let totalInCart = sessionStorage.getItem('carsAddedToCart');
+    let cartCost = sessionStorage.getItem("totalCost");
 
-    for (let i of names) {
-      let products = i.children[1].textContent;
-      console.log(products);
+    let cartItems = sessionStorage.getItem('cars');
+    cartItems = JSON.parse(cartItems);
+    console.log('[cartItems]', cartItems);
+
+    let productName;
+
+    for(let i=0; i < removeButtons.length; i++) {
+      removeButtons[i].addEventListener('click', () => {
+        productName = removeButtons[i].parentElement.parentElement.childNodes[3].innerText;
+        productName = productName.split(" ").join("").toLowerCase();
+
+        console.log('[productName]', productName);
+
+        sessionStorage.setItem('carsAddedToCart', totalInCart - cartItems[productName].inCart);
+        sessionStorage.setItem('totalCost', cartCost - ( cartItems[productName].price * cartItems[productName].inCart));
+
+        delete cartItems[productName];
+        console.log(cartItems);
+        sessionStorage.setItem('cars', JSON.stringify(cartItems));
+
+        onLoadCartCount();
+      })
     }
   }
   removeFromCart();
 
-  function displayItemsOnCart() {
-    let items = sessionStorage.getItem('cars');
-    items = JSON.parse(items);
-    
-    let cars = [];
-    
-    for (let i in items) {
-      cars.push(items[i]);
-    }
-    
-    let output = "";
-    for (let car of cars) {
-      console.log("[car]", car);
-      output += `
-      <tr>
-        <td><img src="./img/${car.model}.jpeg" alt=""></td>
-        <td>${car.name}</td>
-        <td>
-          ${car.inCart}
-        </td>
-        <td>$${car.price}</td>
-        <td><input type="number" value="1" min="1" max="31"></td>
-        <td><button class="btn-remove">Remove</button></td>
-      </tr>
-      `;
-    }
-
-    $('.cart-table').append(output);
-    $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'))
-  }
-  // displayItemsOnCart();
-
 
   function onLoadCartCount() {
-    let totalAddedToCart = sessionStorage.getItem('cartNumbers'); // returns a string
+    let totalAddedToCart = sessionStorage.getItem('carsAddedToCart'); // returns a string
     if (totalAddedToCart) {
       $('.cart-count').text(totalAddedToCart)
     }
   }
-  onLoadCartCount();
 
 
   function updateCartCount() {
@@ -217,7 +207,9 @@ $(document).ready(function() {
       console.log(error);
     }
   })();
-})
+
+  onLoadCartCount();
+});
 
 
 
