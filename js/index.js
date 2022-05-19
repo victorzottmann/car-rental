@@ -48,9 +48,7 @@ $(document).ready(function() {
       }
 
       if (carStatus) {
-        updateCartCount();
         storeItem(carObject);
-        calculateTotalCost(carObject);
         alert(`${carObject.name} was successfuly added to the cart.`)
       } else {
         alert("This car is currently unavailable. Please select another car.");
@@ -81,129 +79,54 @@ $(document).ready(function() {
     sessionStorage.setItem("cars", JSON.stringify(cartItems));
   }
 
-  
-  function calculateTotalCost(carObject) {
-    let cartCost = sessionStorage.getItem('totalCost');
-    
-    if (cartCost != null) {
-      cartCost = parseFloat(cartCost);
-      sessionStorage.setItem('totalCost', cartCost += carObject.price);
-    } else {
-      sessionStorage.setItem('totalCost', carObject.price);
-    }
-  }
-
 
   function displayCart() {
-    let totalInCart = sessionStorage.getItem('carsAddedToCart');
-    let cartCost = sessionStorage.getItem("totalCost");
     let cartItems = sessionStorage.getItem('cars');
     cartItems = JSON.parse(cartItems);
     
     let output = "";
-    let basket = "";
 
-    let table = document.querySelector('.cart-table');
-
-    if (cartItems && table) {
+    if (cartItems) {
       Object.values(cartItems).map(car => {
         output += `
         <tr id="${car.tag}" class="car-row">
           <td><img src="./img/${car.model}.jpeg" alt=""></td>
           <td>${car.name}</td>
-          <td>
-            <button class="btn-quantity btn-quantity-minus">-</button>
-            ${car.inCart}
-            <button class="btn-quantity btn-quantity-plus">+</button>
-          </td>
           <td>$${car.price}.00</td>
           <td><input type="number" value="1" min="1" max="31"></td>
-          <td>$${car.price * car.inCart}.00</td>
           <td><button id="${car.tag}" class="btn-remove">Remove</button></td>
         </tr>
         `;
       });
 
-      basket += `
-        <div class="basket-total-container">
-          <p class="basket-total-title">
-            Cart Total:
-          </p>
-          <p class="basket-total">
-            $${cartCost}.00
-          </p>
-        </div>
-      `;
-    }
-
-    removeFromCart();
-
+      $('.btn-checkout').removeClass('hidden');
+    } 
+    
     $('.cart-table').append(output);
-    $('.cart-container').append(basket);
     $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'));
+    
+    $(`.btn-remove`).click((e) => {
+      let row = e.target.parentElement.parentElement;
+      
+      let productName = row.childNodes[3].innerText;
+      productName = productName.split(" ").join("").toLowerCase();
+      
+      delete cartItems[productName];
+      row.remove();
+
+      sessionStorage.setItem('cars', JSON.stringify(cartItems));
+    });
+
   }
   displayCart();
 
-
-  function removeFromCart() {
-    let removeButtons = document.querySelectorAll('.btn-remove');
-
-    let totalInCart = sessionStorage.getItem('carsAddedToCart');
-    let cartCost = sessionStorage.getItem("totalCost");
-    let cartItems = sessionStorage.getItem('cars');
-    cartItems = JSON.parse(cartItems);
-
-    let productName;
-
-    console.log('[total in cart]', totalInCart);
-
-    for(let i=0; i < removeButtons.length; i++) {
-      removeButtons[i].addEventListener('click', () => {
-        let row = removeButtons[i].parentElement.parentElement;
-
-        productName = removeButtons[i].parentElement.parentElement.childNodes[3].innerText;
-        productName = productName.split(" ").join("").toLowerCase();
-
-        let totalInCartUpdate = totalInCart - cartItems[productName].inCart;
-        let totalCostUpdate =  cartCost - (cartItems[productName].price * cartItems[productName].inCart);
-        console.log(totalCostUpdate);
-        sessionStorage.setItem('carsAddedToCart', totalInCartUpdate);
-
-        $('.basket-total').text(`$${totalCostUpdate}.00`);
-        sessionStorage.setItem('totalCost', totalCostUpdate);
-
-        delete cartItems[productName];
-        row.remove();
-        sessionStorage.setItem('cars', JSON.stringify(cartItems));
-
-        onLoadCartCount();
-      });
-    }
-  }
-  removeFromCart();
-
-
-  function onLoadCartCount() {
-    let totalAddedToCart = sessionStorage.getItem('carsAddedToCart'); // returns a string
-    if (totalAddedToCart) {
-      $('.cart-count').text(totalAddedToCart)
-    }
+  function displayCheckout() {
+    $('.btn-checkout').click(() => {
+      console.log('click');
+    })
   }
 
-
-  function updateCartCount() {
-    let totalAddedToCart = sessionStorage.getItem('carsAddedToCart'); // returns a string
-    totalAddedToCart = parseInt(totalAddedToCart);
-    
-    if (totalAddedToCart) {
-      sessionStorage.setItem('carsAddedToCart', totalAddedToCart += 1);
-      $('.cart-count').text(totalAddedToCart)
-    } else {
-      sessionStorage.setItem('carsAddedToCart', 1);
-      $('.cart-count').text(1)
-    }
-  }
-
+  displayCheckout();
   
   (function getCars() {
     try {
@@ -217,7 +140,6 @@ $(document).ready(function() {
     }
   })();
 
-  onLoadCartCount();
 });
 
 
