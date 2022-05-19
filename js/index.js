@@ -135,6 +135,21 @@ $(document).ready(function() {
   }
   displayCart();
 
+  function removeFromCart() {
+    let removeButtons = document.querySelectorAll('.btn-remove');
+    let names = [];
+
+    for (let i = 0; i < removeButtons.length; i++) {
+      names.push(removeButtons[i].parentElement.parentElement);
+    }
+
+    for (let i of names) {
+      let products = i.children[1].textContent;
+      console.log(products);
+    }
+  }
+  removeFromCart();
+
   function displayItemsOnCart() {
     let items = sessionStorage.getItem('cars');
     items = JSON.parse(items);
