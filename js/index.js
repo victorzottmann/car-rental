@@ -54,12 +54,13 @@ $(document).ready(function() {
         model: carModel,
         mileage: carMileage,
         fuel: carFuel,
-        price: parseFloat(carPrice),
+        price: parseInt(carPrice),
         inCart: 0,
       }
 
       if (carStatus) {
         storeItem(carObject);
+        calculateTotalCost(carObject);
         alert(`${carObject.name} was successfuly added to the cart.`)
       } else {
         alert("This car is currently unavailable. Please select another car.");
@@ -90,8 +91,15 @@ $(document).ready(function() {
     sessionStorage.setItem("cars", JSON.stringify(cartItems));
   }
 
-  function calculateCost(carObject) {
-
+  function calculateTotalCost(carObject) {
+    let cartCost = sessionStorage.getItem('totalCost');
+    
+    if (cartCost != null) {
+      cartCost = parseInt(cartCost);
+      sessionStorage.setItem('totalCost', cartCost += carObject.price);
+    } else {
+      sessionStorage.setItem('totalCost', carObject.price);
+    }
   }
 
 
@@ -130,6 +138,7 @@ $(document).ready(function() {
       row.remove();
 
       sessionStorage.setItem('cars', JSON.stringify(cartItems));
+      location.reload();
     });
 
   }
@@ -139,14 +148,14 @@ $(document).ready(function() {
   function displayCheckout() {
     let cars = sessionStorage.getItem('cars');
     cars = JSON.parse(cars)
-    $('.btn-checkout').click(() => {
-      console.log(Object.keys(cars).length);
-      console.log(cars);
 
+    $('.btn-checkout').click(() => {
+      if (Object.keys(cars).length > 0) {
+        window.location.href = './checkout.html';
+      }
     })
   }
   displayCheckout();
-
 });
 
 
