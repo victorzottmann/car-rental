@@ -146,6 +146,10 @@ $(document).ready(function() {
       location.reload();
     });
 
+    if (Object.keys(cartItems).length == 0) {
+      $('.btn-checkout').addClass('hidden');
+    }
+
   }
   displayCart();
 
