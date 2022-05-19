@@ -38,10 +38,46 @@
   </header>
 
   <main>
-    <div class="container container-checkout">
+    <div class="container">
+      <a class="nav-link nav-link-back" href="cart.html">
+        < Back to Cart
+      </a>
+      <br />
+    </div>
 
+    <div class="container container-checkout">
+      <h3>Customer Details and Payment</h3>
+      <br />
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <br />
+        <div class="form-inline">
+          <label class="my-1 mr-2">Payment type</label>
+          <select class="custom-select my-1 mr-sm-2">
+            <option selected>Choose...</option>
+            <option value="1">VISA</option>
+            <option value="2">MasterCard</option>
+            <option value="3">PayPal</option>
+          </select>
+        </div>
+        <h5 style="float: right;">Total: <span class="payment-span"></span></h5>
+        <br />
+        <br />
+        <button type="submit" class="btn-checkout" style="float: right;">Pay</button>
+      </form>
     </div>
   </main>
+
+  <script type="text/javascript" src="./js/index.js"></script>
 </body>
 
 </html>

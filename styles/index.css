@@ -173,7 +173,6 @@ footer {
 }
 
 .btn-checkout {
-  margin-right: 35px;
   cursor: pointer;
   border: none;
   border-radius: 50px;
@@ -188,4 +187,12 @@ footer {
 
 .hidden {
   display: none;
+}
+
+.nav-link-back {
+  /* border: 1px solid black; */
+  margin-top: 10px;
+  width: 160px;
+  text-align: left;
+  text-decoration: underline;
 }

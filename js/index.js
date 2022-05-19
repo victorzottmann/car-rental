@@ -129,11 +129,16 @@ $(document).ready(function() {
     $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'));
     
     $(`.btn-remove`).click((e) => {
+      let totalCost = sessionStorage.getItem('totalCost');
+      totalCost = parseInt(totalCost);
+
       let row = e.target.parentElement.parentElement;
       
       let productName = row.childNodes[3].innerText;
       productName = productName.split(" ").join("").toLowerCase();
       
+      sessionStorage.setItem('totalCost', totalCost - cartItems[productName].price);
+
       delete cartItems[productName];
       row.remove();
 
@@ -147,13 +152,23 @@ $(document).ready(function() {
 
   function displayCheckout() {
     let cars = sessionStorage.getItem('cars');
-    cars = JSON.parse(cars)
+    cars = JSON.parse(cars);
+
+    let totalCost = sessionStorage.getItem('totalCost');
+
+    if (totalCost == null) {
+      $('.payment-span').text(0);
+    } else {
+      $('.payment-span').text(`$${totalCost}.00`);
+    }
 
     $('.btn-checkout').click(() => {
       if (Object.keys(cars).length > 0) {
         window.location.href = './checkout.html';
+      } else {
+        alert("Please add a car to proceed to payment.")
       }
-    })
+    });
   }
   displayCheckout();
 });
