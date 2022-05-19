@@ -129,3 +129,39 @@ footer {
   align-items: center;
   justify-content: center;
 }
+
+.btn-quantity {
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: var(--brand-color);
+}
+
+.btn-quantity:hover {
+  background-color: var(--brand-color);
+}
+
+.btn-quantity-minus {
+  margin-right: 10px;
+}
+
+.btn-quantity-plus {
+  margin-left: 10px;
+}
+
+.basket-total-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.basket-total-title {
+  width: 11%;
+  font-weight: 700;
+}
+
+.basket-total {
+  width: 10%;
+}

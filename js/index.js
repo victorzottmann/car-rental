@@ -91,6 +91,50 @@ $(document).ready(function() {
     }
   }
 
+  function displayCart() {
+    let cartCost = sessionStorage.getItem('totalCost')
+    let cartItems = sessionStorage.getItem('cars');
+    cartItems = JSON.parse(cartItems);
+    
+    let output = "";
+    let basket = "";
+    if (cartItems) {
+      Object.values(cartItems).map(car => {
+        output += `
+        <tr>
+          <td><img src="./img/${car.model}.jpeg" alt=""></td>
+          <td>${car.name}</td>
+          <td>
+            <button class="btn-quantity btn-quantity-minus">-</button>
+            ${car.inCart}
+            <button class="btn-quantity btn-quantity-plus">+</button>
+          </td>
+          <td>$${car.price}.00</td>
+          <td><input type="number" value="1" min="1" max="31"></td>
+          <td>$${car.price * car.inCart}.00</td>
+          <td><button class="btn-remove">Remove</button></td>
+        </tr>
+        `;
+      });
+
+      basket += `
+        <div class="basket-total-container">
+          <p class="basket-total-title">
+            Cart Total:
+          </p>
+          <p class="basket-total">
+            $${cartCost}.00
+          </p>
+        </div>
+      `;
+    }
+
+    $('.cart-table').append(output);
+    $('.cart-container').append(basket)
+    $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'))
+  }
+  displayCart();
+
   function displayItemsOnCart() {
     let items = sessionStorage.getItem('cars');
     items = JSON.parse(items);
@@ -109,7 +153,6 @@ $(document).ready(function() {
         <td><img src="./img/${car.model}.jpeg" alt=""></td>
         <td>${car.name}</td>
         <td>
-          
           ${car.inCart}
         </td>
         <td>$${car.price}</td>
@@ -122,7 +165,7 @@ $(document).ready(function() {
     $('.cart-table').append(output);
     $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'))
   }
-  displayItemsOnCart();
+  // displayItemsOnCart();
 
 
   function onLoadCartCount() {
