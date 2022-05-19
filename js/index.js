@@ -95,19 +95,22 @@ $(document).ready(function() {
 
 
   function displayCart() {
-    let cartCost = sessionStorage.getItem('totalCost')
+    let totalInCart = sessionStorage.getItem('carsAddedToCart');
+    let cartCost = sessionStorage.getItem("totalCost");
     let cartItems = sessionStorage.getItem('cars');
     cartItems = JSON.parse(cartItems);
     
     let output = "";
     let basket = "";
 
-    if (cartItems) {
+    let table = document.querySelector('.cart-table');
+
+    if (cartItems && table) {
       Object.values(cartItems).map(car => {
         output += `
         <tr id="${car.tag}" class="car-row">
           <td><img src="./img/${car.model}.jpeg" alt=""></td>
-          <td id="${car.name}">${car.name}</td>
+          <td>${car.name}</td>
           <td>
             <button class="btn-quantity btn-quantity-minus">-</button>
             ${car.inCart}
@@ -132,6 +135,7 @@ $(document).ready(function() {
         </div>
       `;
     }
+
     removeFromCart();
 
     $('.cart-table').append(output);
@@ -146,29 +150,34 @@ $(document).ready(function() {
 
     let totalInCart = sessionStorage.getItem('carsAddedToCart');
     let cartCost = sessionStorage.getItem("totalCost");
-
     let cartItems = sessionStorage.getItem('cars');
     cartItems = JSON.parse(cartItems);
-    console.log('[cartItems]', cartItems);
 
     let productName;
 
+    console.log('[total in cart]', totalInCart);
+
     for(let i=0; i < removeButtons.length; i++) {
       removeButtons[i].addEventListener('click', () => {
+        let row = removeButtons[i].parentElement.parentElement;
+
         productName = removeButtons[i].parentElement.parentElement.childNodes[3].innerText;
         productName = productName.split(" ").join("").toLowerCase();
 
-        console.log('[productName]', productName);
+        let totalInCartUpdate = totalInCart - cartItems[productName].inCart;
+        let totalCostUpdate =  cartCost - (cartItems[productName].price * cartItems[productName].inCart);
+        console.log(totalCostUpdate);
+        sessionStorage.setItem('carsAddedToCart', totalInCartUpdate);
 
-        sessionStorage.setItem('carsAddedToCart', totalInCart - cartItems[productName].inCart);
-        sessionStorage.setItem('totalCost', cartCost - ( cartItems[productName].price * cartItems[productName].inCart));
+        $('.basket-total').text(`$${totalCostUpdate}.00`);
+        sessionStorage.setItem('totalCost', totalCostUpdate);
 
         delete cartItems[productName];
-        console.log(cartItems);
+        row.remove();
         sessionStorage.setItem('cars', JSON.stringify(cartItems));
 
         onLoadCartCount();
-      })
+      });
     }
   }
   removeFromCart();
