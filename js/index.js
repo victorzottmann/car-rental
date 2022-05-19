@@ -1,4 +1,15 @@
 $(document).ready(function() {
+  (function getCars() {
+    try {
+      $.ajax({
+        type: "GET",
+        url: "../data/cars.json",
+        success: ({ cars }) => cars.forEach(car => showCar(car))
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  })();
 
   function showCar(car) {
     let carAvailable = car.availability ? "Available" : "Unavailable";
@@ -68,7 +79,7 @@ $(document).ready(function() {
           [carObject.tag]: carObject
         }
       }
-      cartItems[carObject.tag].inCart += 1;
+      cartItems[carObject.tag].inCart + 1;
     } else {
       carObject.inCart = 1;
       cartItems = {
@@ -77,6 +88,10 @@ $(document).ready(function() {
     }
 
     sessionStorage.setItem("cars", JSON.stringify(cartItems));
+  }
+
+  function calculateCost(carObject) {
+
   }
 
 
@@ -120,25 +135,17 @@ $(document).ready(function() {
   }
   displayCart();
 
+
   function displayCheckout() {
+    let cars = sessionStorage.getItem('cars');
+    cars = JSON.parse(cars)
     $('.btn-checkout').click(() => {
-      console.log('click');
+      console.log(Object.keys(cars).length);
+      console.log(cars);
+
     })
   }
-
   displayCheckout();
-  
-  (function getCars() {
-    try {
-      $.ajax({
-        type: "GET",
-        url: "../data/cars.json",
-        success: ({ cars }) => cars.forEach(car => showCar(car))
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  })();
 
 });
 
