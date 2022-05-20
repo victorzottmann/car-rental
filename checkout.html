@@ -142,20 +142,19 @@
               <div class="col-md-6 mb-3" style="padding-left: 0;">
                 <label for="card-name">Name on card</label>
                 <input type="text" class="form-control" id="card-name" placeholder="" required>
-                <!-- <small class="text-muted">Full name as displayed on card</small><br /> -->
                 <small id="invalid-card-name" class="invalid-input"></small>
               </div>
               <div class="col-md-6 mb-3" style="padding-right: 0;">
                 <label for="card-number">Credit card number</label>
-                <input type="text" class="form-control" id="card-number" placeholder="" required>
+                <input type="text" class="form-control" id="card-number" maxlength="19" placeholder="" required>
                 <small id="invalid-card-number" class="invalid-input"></small>
               </div>
             </div>
             <div class="row">
               <div class="col-md-3 mb-3" style="padding-left: 0;">
-                <label for="card-date">Expiry Date</label>
-                <input type="date" class="form-control" id="card-date" placeholder="" required>
-                <small id="invalid-card-date" class="invalid-date"></small>
+                <label for="card-date">Expiry Date (mm/yy)</label>
+                <input type="text" class="form-control" id="card-date" placeholder="" required>
+                <small id="invalid-card-date" class="invalid-input"></small>
               </div>
               <div class="col-md-3 mb-3">
                 <label for="card-cvv">CVV</label>

@@ -221,5 +221,15 @@ footer {
 
 .invalid-input,
 .invalid-date {
-  color: red;
+  color: #e74c3c;
+}
+
+.input-success {
+  border-width: 2px;
+  border-color: #2ecc71;
+}
+
+.input-error {
+  border-width: 2px;
+  border-color: #e74c3c;
 }
