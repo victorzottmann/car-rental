@@ -47,6 +47,7 @@ $(document).ready(function() {
       let carModel = car.model;
       let carStatus = car.availability;
       let carTag = carName.replace(/ /g, "").toLowerCase();
+      let carQtyInCart = car.inCart;
       
       let carObject = {
         tag: carTag,
@@ -55,7 +56,7 @@ $(document).ready(function() {
         mileage: carMileage,
         fuel: carFuel,
         price: parseInt(carPrice),
-        inCart: 0,
+        inCart: carQtyInCart,
       }
 
       if (carStatus) {

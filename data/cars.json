@@ -1,7 +1,6 @@
 {
   "cars": [
     {
-      "id": 1001,
       "category": "Sedan",
       "brand": "BMW",
       "model": "320i",
@@ -11,10 +10,10 @@
       "seats": 5,
       "pricePerDay": 150,
       "availability": true,
-      "description": ""
+      "description": "",
+      "inCart": 0
     },
     {
-      "id": 1002,
       "category": "Sedan",
       "brand": "Toyota",
       "model": "Camry",
@@ -24,10 +23,10 @@
       "seats": 5,
       "pricePerDay": 120,
       "availability": true,
-      "description": ""
+      "description": "",
+      "inCart": 0
     },
     {
-      "id": 1003,
       "category": "Sedan",
       "brand": "Volkswagen",
       "model": "Golf",
@@ -37,10 +36,10 @@
       "seats": 5,
       "pricePerDay": 120,
       "availability": true,
-      "description": ""
+      "description": "",
+      "inCart": 0
     },
     {
-      "id": 1004,
       "category": "Sedan",
       "brand": "Hyundai",
       "model": "Sonata",
@@ -50,10 +49,10 @@
       "seats": 5,
       "pricePerDay": 120,
       "availability": true,
-      "description": ""
+      "description": "",
+      "inCart": 0
     },
     { 
-      "id": 1005,
       "category": "Sedan",
       "brand": "Honda",
       "model": "Civic",
@@ -63,10 +62,10 @@
       "seats": 5,
       "pricePerDay": 150,
       "availability": false,
-      "description": ""
+      "description": "",
+      "inCart": 0
     },
     {
-      "id": 2001,
       "category": "Wagon",
       "brand": "Holden",
       "model": "Captiva",
@@ -76,10 +75,10 @@
       "seats": 7,
       "pricePerDay": 120,
       "availability": true,
-      "description": ""
+      "description": "",
+      "inCart": 0
     },
     { 
-      "id": 2002,
       "category": "Wagon",
       "brand": "Suzuki",
       "model": "Jimny",
@@ -89,10 +88,10 @@
       "seats": 7,
       "pricePerDay": 140,
       "availability": false,
-      "description": ""
+      "description": "",
+      "inCart": 0
     },
     {
-      "id": 3001,
       "category": "SUV",
       "brand": "Jeep",
       "model": "Cherokee",
@@ -102,10 +101,10 @@
       "seats": 7,
       "pricePerDay": 250,
       "availability": false,
-      "description": ""
+      "description": "",
+      "inCart": 0
     },
     {
-      "id": 3002,
       "category": "SUV",
       "brand": "Nissan",
       "model": "X-Trail",
@@ -115,10 +114,10 @@
       "seats": 7,
       "pricePerDay": 120,
       "availability": false,
-      "description": ""
+      "description": "",
+      "inCart": 0
     },
     {
-      "id": 3003,
       "category": "SUV",
       "brand": "Mercedez-Benz",
       "model": "GLC",
@@ -128,7 +127,8 @@
       "seats": 7,
       "pricePerDay": 250,
       "availability": false,
-      "description": ""
+      "description": "",
+      "inCart": 0
     }
   ]
 }
