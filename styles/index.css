@@ -1,6 +1,8 @@
 :root {
   --brand-color: #ffd100;
   --brand-color-hover: #e3ba03; 
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
 }
 
 .navbar {
@@ -211,7 +213,10 @@ footer {
   margin-top: 30px;
   width: 160px;
   text-align: left;
+}
 
+.nav-link-back-receipt {
+  width: 200px;
 }
 
 .nav-link-back-text {
@@ -221,15 +226,15 @@ footer {
 
 .invalid-input,
 .invalid-date {
-  color: #e74c3c;
+  color: var(--error-color);
 }
 
 .input-success {
   border-width: 2px;
-  border-color: #2ecc71;
+  border-color: var(--success-color);
 }
 
 .input-error {
   border-width: 2px;
-  border-color: #e74c3c;
+  border-color: var(--error-color);
 }

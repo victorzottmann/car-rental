@@ -5,7 +5,20 @@ $(document).ready(function() {
   let street = document.getElementById('street');
   let city = document.getElementById('city');
   let postCode = document.getElementById('post-code');
+
+  let firstNameSession = sessionStorage.getItem('firstName');
+  let lastNameSession = sessionStorage.getItem('lastName');
+  let emailSession = sessionStorage.getItem('email');
+  let streetSession = sessionStorage.getItem('street');
+  let citySession = sessionStorage.getItem('city');
+  let postCodeSession = sessionStorage.getItem('postCode');
   
+  firstName.value = firstNameSession;
+  lastName.value = lastNameSession;
+  email.value = emailSession;
+  street.value = streetSession;
+  city.value = citySession;
+  postCode.value = postCodeSession;
   
   $('.btn-payment').click((e) => { 
     e.preventDefault();
