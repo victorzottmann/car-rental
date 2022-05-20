@@ -109,7 +109,6 @@
               <div class="col-md-6 mb-3">
                 <label for="state">State</label>
                 <select class="form-select d-block w-100" id="state" required>
-                  <option value="">Choose...</option>
                   <option>Australian Capital Territory</option>
                   <option>New South Wales</option>
                   <option>Northern Territory</option>
@@ -125,41 +124,13 @@
                 <small id="invalid-post-code" class="invalid-input"></small>
               </div>
             </div> 
-            <hr class="mb-4">
-            <h4 class="mb-3">Payment</h4>
-            
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Credit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Debit card</label>
-              </div>
-            </div>
             <div class="row">
-              <div class="col-md-6 mb-3" style="padding-left: 0;">
-                <label for="card-name">Name on card</label>
-                <input type="text" class="form-control" id="card-name" placeholder="" required>
-                <small id="invalid-card-name" class="invalid-input"></small>
-              </div>
-              <div class="col-md-6 mb-3" style="padding-right: 0;">
-                <label for="card-number">Credit card number</label>
-                <input type="text" class="form-control" id="card-number" maxlength="19" placeholder="" required>
-                <small id="invalid-card-number" class="invalid-input"></small>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3 mb-3" style="padding-left: 0;">
-                <label for="card-date">Expiry Date (mm/yy)</label>
-                <input type="text" class="form-control" id="card-date" placeholder="" required>
-                <small id="invalid-card-date" class="invalid-input"></small>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="card-cvv">CVV</label>
-                <input type="text" class="form-control" id="card-cvv" placeholder="" required>
-                <small id="invalid-card-cvv" class="invalid-input"></small>
+              <div class="col-md-9 mb-3" style="padding-left: 0;">
+                <label for="country">Payment Type</label>
+                <select class="form-select d-block w-100" id="country" required>
+                  <option value="">VISA</option>
+                  <option>MasterCard</option>
+                </select>
               </div>
             </div>
           </form>

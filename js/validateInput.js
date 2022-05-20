@@ -5,25 +5,20 @@ $(document).ready(function() {
   let street = document.getElementById('street');
   let city = document.getElementById('city');
   let postCode = document.getElementById('post-code');
-  let cardName = document.getElementById('card-name');
-  let cardNumber = document.getElementById('card-number');
-  let cardExpiry = document.getElementById('card-date');
-  let cardCvv = document.getElementById('card-cvv');
-
- 
-  cardNumber.onkeyup = function() {
-    let test = cardNumber.value.split('-').join('');
-    let finalVal = test.match(/.{1,4}/gm).join('-');
-    console.log(finalVal);
-    cardNumber.value = finalVal;
-    console.log(cardNumber.value.length);
-  }
-
-
+  
+  
   $('.btn-payment').click((e) => { 
     e.preventDefault();
-    
     checkInputs();
+
+    let validInputs = document.getElementsByClassName('form-control input-success');
+
+    if (validInputs.length == 6) {
+      window.location.href = './receipt.html';
+    } else {
+      console.log('Not Yet');
+      console.log(validInputs.length);
+    }   
   });
 
   function checkInputs() {
@@ -33,84 +28,52 @@ $(document).ready(function() {
     let streetValue  = street.value; 
     let cityValue  = city.value; 
     let postCodeValue = postCode.value.trim(); 
-    let cardNameValue = cardName.value; 
-    let cardNumberValue  = cardNumber.value;
-    let cardExpiryValue  = cardExpiry.value.trim();
-    let cardCvvValue  = cardCvv.value.trim();
-
-   
+ 
     if (firstNameValue === '') {
       setErrorFor(firstName, 'First name cannot be blank');
     } else {
       setSuccessFor(firstName);
+      sessionStorage.setItem('firstName', firstNameValue);
     }
-
+    
     if (lastNameValue === '') {
       setErrorFor(lastName, 'Last name cannot be blank');
     } else {
       setSuccessFor(lastName);
+      sessionStorage.setItem('lastName', lastNameValue);
     }
-
+    
     if (emailValue === '') {
       setErrorFor(email, 'Email address cannot be blank');
     } else if (!validEmailFormat(emailValue)) {
       setErrorFor(email, 'Email is not valid');
     } else {
       setSuccessFor(email);
+      sessionStorage.setItem('email', emailValue);
     }
-
+    
     if (streetValue === '') {
       setErrorFor(street, 'Street cannot be blank');
     } else {
       setSuccessFor(street);
+      sessionStorage.setItem('street', streetValue);
     }
-
+    
     if (cityValue === '') {
       setErrorFor(city, 'City cannot be blank');
     } else {
       setSuccessFor(city);
+      sessionStorage.setItem('city', cityValue);
     }
-
+    
     if (postCodeValue === '') {
       setErrorFor(postCode, 'Post code cannot be blank');
     } else if (!validPostCode(postCodeValue)) {
-      setErrorFor(postCode, 'Post code invalid. It must be an Australian post code.')
-    } 
-    else {
+      setErrorFor(postCode, 'Post code invalid. It must be an Australian post code.');
+    } else {
       setSuccessFor(postCode);
+      sessionStorage.setItem('postCode', postCodeValue);
     }
-
-    if (cardNameValue === '') {
-      setErrorFor(cardName, 'Card name cannot be blank');
-    } else {
-      setSuccessFor(cardName);
-    }
-
-    if (cardNumberValue === '') {
-      setErrorFor(cardNumber, 'Card number cannot be blank');
-    } else if (!validCardNumber(cardNumberValue)) {
-      setErrorFor(cardNumber, 'Card number invalid.');
-    } else {
-      setSuccessFor(cardNumber);
-    }
-
-    if (cardExpiryValue === '') {
-      setErrorFor(cardExpiry, 'Card date cannot be blank');
-    } else if (!validCardExpiryDate(cardExpiryValue)) {
-      setErrorFor(cardExpiry, 'Card date invalid.');
-    } else {
-      setSuccessFor(cardExpiry);
-    }
-
-    if (cardCvvValue === '') {
-      setErrorFor(cardCvv, 'Card CVV cannot be blank');
-    } else if (!validCvvFormat(cardCvvValue)) {
-      setErrorFor(cardCvv, 'CVV is not valid');
-    }
-    else {
-      setSuccessFor(cardCvv);
-    }
-
   }
 
   function setErrorFor(input, message) {
@@ -134,17 +97,4 @@ $(document).ready(function() {
   function validPostCode(postCode) {
     return /[2-3]\d\d\d/.test(postCode);
   }
-
-  function validCardNumber(cardNumber) {
-    return /^4[0-9]{12}(?:[0-9]{3})?$/.test(cardNumber)
-  }
-
-  function validCardExpiryDate(date) {
-    return /^\d{2}\/\d{2}$/.test(date);
-  }
-
-  function validCvvFormat(cvv) {
-    return /[0-9]\d\d/.test(cvv);
-  }
-
 });
