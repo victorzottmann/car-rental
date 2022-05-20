@@ -59,52 +59,44 @@
               <strong><span class="payment-span"></span></strong>
             </li>
           </ul>
-          <button type="submit" class="btn-payment" style="margin-right: 0; float: right;">
+          <button form="checkout-form" type="submit" class="btn-payment" style="margin-right: 0; float: right;">
             Pay
           </button>
         </div>
+
         <div class="col-md-8 order-md-1" style="padding-left: 0;">
           <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate>
+
+          <form id="checkout-form" novalidate>
             <div class="row">
               <div class="col-md-6 mb-3" style="padding-left: 0;">
-                <label for="firstName">First name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid first name is required.
-                </div>
+                <label for="first-name">First name</label>
+                <input type="text" class="form-control" id="first-name" placeholder="" required>
+                <small id="invalid-first-name" class="invalid-input"></small>
               </div>
               <div class="col-md-6 mb-3" style="padding-right: 0;">
-                <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid last name is required.
-                </div>
+                <label for="last-name">Last name</label>
+                <input type="text" class="form-control" id="last-name" placeholder="" value="" required>
+                <small id="invalid-last-name" class="invalid-input"></small>
               </div>
             </div>
 
             <div class="mb-3">
               <label for="email">Email</label>
               <input type="email" class="form-control" id="email" placeholder="">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
+              <small id="invalid-email" class="invalid-input"></small>
             </div>
             <br />
             <div class="mb-3">
               <label for="street">Street</label>
               <input type="text" class="form-control" id="street" placeholder="" required>
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
+              <small id="invalid-street" class="invalid-input"></small>
               <br />
             </div>
             <div class="mb-3">
               <label for="city">City</label>
               <input type="text" class="form-control" id="city" placeholder="" required>
-              <div class="invalid-feedback">
-                Please enter a valid city.
-              </div>
+              <small id="invalid-city" class="invalid-input"></small>
               <br />
             </div>
             <div class="row">
@@ -113,9 +105,6 @@
                 <select class="form-select d-block w-100" id="country" required>
                   <option value="">Australia</option>
                 </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="state">State</label>
@@ -129,16 +118,11 @@
                   <option>Victoria</option>
                   <option>Western Australia</option>
                 </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
               </div>
               <div class="col-md-3 mb-3" style="padding-right: 0;">
                 <label for="post-code">Post Code</label>
                 <input type="text" class="form-control" id="post-code" required>
-                <div class="invalid-feedback">
-                  Post code required.
-                </div>
+                <small id="invalid-post-code" class="invalid-input"></small>
               </div>
             </div> 
             <hr class="mb-4">
@@ -156,35 +140,27 @@
             </div>
             <div class="row">
               <div class="col-md-6 mb-3" style="padding-left: 0;">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
+                <label for="card-name">Name on card</label>
+                <input type="text" class="form-control" id="card-name" placeholder="" required>
+                <!-- <small class="text-muted">Full name as displayed on card</small><br /> -->
+                <small id="invalid-card-name" class="invalid-input"></small>
               </div>
               <div class="col-md-6 mb-3" style="padding-right: 0;">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
+                <label for="card-number">Credit card number</label>
+                <input type="text" class="form-control" id="card-number" placeholder="" required>
+                <small id="invalid-card-number" class="invalid-input"></small>
               </div>
             </div>
             <div class="row">
               <div class="col-md-3 mb-3" style="padding-left: 0;">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
+                <label for="card-date">Expiry Date</label>
+                <input type="date" class="form-control" id="card-date" placeholder="" required>
+                <small id="invalid-card-date" class="invalid-date"></small>
               </div>
               <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
+                <label for="card-cvv">CVV</label>
+                <input type="text" class="form-control" id="card-cvv" placeholder="" required>
+                <small id="invalid-card-cvv" class="invalid-input"></small>
               </div>
             </div>
           </form>
@@ -196,6 +172,7 @@
 
 
   <script type="text/javascript" src="./js/index.js"></script>
+  <script type="text/javascript" src="./js/validateInput.js"></script>
 </body>
 
 </html>

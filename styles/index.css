@@ -219,3 +219,7 @@ footer {
   margin-left: 5px;
 }
 
+.invalid-input,
+.invalid-date {
+  color: red;
+}
