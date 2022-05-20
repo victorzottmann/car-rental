@@ -238,3 +238,7 @@ footer {
   border-width: 2px;
   border-color: var(--error-color);
 }
+
+sup {
+  color: var(--error-color);
+}

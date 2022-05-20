@@ -24,9 +24,10 @@ $(document).ready(function() {
     e.preventDefault();
     checkInputs();
 
-    let validInputs = document.getElementsByClassName('form-control input-success');
+    const validInputs = document.getElementsByClassName('form-control input-success');
+    const allInputsAreValid = validInputs.length == 6;
 
-    if (validInputs.length == 6) {
+    if (allInputsAreValid) {
       window.location.href = './receipt.html';
     } else {
       console.log('Not Yet');

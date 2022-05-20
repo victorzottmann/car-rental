@@ -70,45 +70,45 @@
           <form id="checkout-form" novalidate>
             <div class="row">
               <div class="col-md-6 mb-3" style="padding-left: 0;">
-                <label for="first-name">First name</label>
-                <input type="text" class="form-control" id="first-name" placeholder="" required>
+                <label for="first-name">First name <sup>*</sup></label>
+                <input type="text" class="form-control" id="first-name" required />
                 <small id="invalid-first-name" class="invalid-input"></small>
               </div>
               <div class="col-md-6 mb-3" style="padding-right: 0;">
-                <label for="last-name">Last name</label>
-                <input type="text" class="form-control" id="last-name" placeholder="" value="" required>
+                <label for="last-name">Last name <sup>*</sup></label>
+                <input type="text" class="form-control" id="last-name" required />
                 <small id="invalid-last-name" class="invalid-input"></small>
               </div>
             </div>
 
             <div class="mb-3">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="">
+              <label for="email">Email <sup>*</sup></label>
+              <input type="email" class="form-control" id="email">
               <small id="invalid-email" class="invalid-input"></small>
             </div>
             <br />
             <div class="mb-3">
-              <label for="street">Street Address</label>
-              <input type="text" class="form-control" id="street" placeholder="" required>
+              <label for="street">Street Address <sup>*</sup></label>
+              <input type="text" class="form-control" id="street" required />
               <small id="invalid-street" class="invalid-input"></small>
               <br />
             </div>
             <div class="mb-3">
-              <label for="city">City</label>
-              <input type="text" class="form-control" id="city" placeholder="" required>
+              <label for="city">City <sup>*</sup></label>
+              <input type="text" class="form-control" id="city" required />
               <small id="invalid-city" class="invalid-input"></small>
               <br />
             </div>
             <div class="row">
               <div class="col-md-3 mb-3" style="padding-left: 0;">
                 <label for="country">Country</label>
-                <select class="form-select d-block w-100" id="country" required>
+                <select class="form-select d-block w-100" id="country">
                   <option value="">Australia</option>
                 </select>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="state">State</label>
-                <select class="form-select d-block w-100" id="state" required>
+                <select class="form-select d-block w-100" id="state">
                   <option>Australian Capital Territory</option>
                   <option>New South Wales</option>
                   <option>Northern Territory</option>
@@ -119,15 +119,15 @@
                 </select>
               </div>
               <div class="col-md-3 mb-3" style="padding-right: 0;">
-                <label for="post-code">Post Code</label>
-                <input type="text" class="form-control" id="post-code" required>
+                <label for="post-code">Post Code <sup>*</sup></label>
+                <input type="text" class="form-control" id="post-code" required />
                 <small id="invalid-post-code" class="invalid-input"></small>
               </div>
             </div> 
             <div class="row">
               <div class="col-md-9 mb-3" style="padding-left: 0;">
                 <label for="country">Payment Type</label>
-                <select class="form-select d-block w-100" id="country" required>
+                <select class="form-select d-block w-100" id="country">
                   <option value="">VISA</option>
                   <option>MasterCard</option>
                 </select>
