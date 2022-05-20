@@ -18,7 +18,7 @@ $(document).ready(function() {
     const carModelLowerCase = car.model.split("-").join("").toLowerCase();
 
     let output = `
-      <div class="col">
+      <div class="col card-col">
         <div class="card h-100">
           <img 
             src="./img/${carModelLowerCase}.jpeg" 
@@ -36,7 +36,7 @@ $(document).ready(function() {
         </div>
       </div>
     `;
-    $('.row').append(output);
+    $('.card-row').append(output);
 
     $(`#btn-${car.model}`).click(() => { 
       
@@ -107,11 +107,12 @@ $(document).ready(function() {
     let cartItems = sessionStorage.getItem('cars');
     cartItems = JSON.parse(cartItems);
     
-    let output = "";
+    let cartOutput = "";
+    let checkoutOutput = "";
 
     if (cartItems) {
       Object.values(cartItems).map(car => {
-        output += `
+        cartOutput += `
         <tr id="${car.tag}" class="car-row">
           <td><img src="./img/${car.model}.jpeg" alt=""></td>
           <td>${car.name}</td>
@@ -120,12 +121,23 @@ $(document).ready(function() {
           <td><button id="${car.tag}" class="btn-remove">Remove</button></td>
         </tr>
         `;
+
+        checkoutOutput += `
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">${car.name}</h6>
+              <small class="text-muted">Mileage: ${car.mileage}</small>
+            </div>
+            <span class="text-muted">$${car.price}.00</span>
+          </li>
+        `;
       });
 
       $('.btn-checkout').removeClass('hidden');
     } 
     
-    $('.cart-table').append(output);
+    $('.checkout-list').prepend(checkoutOutput);
+    $('.cart-table').append(cartOutput);
     $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'));
     
     $(`.btn-remove`).click((e) => {

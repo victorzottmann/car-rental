@@ -177,12 +177,29 @@ footer {
   border: none;
   border-radius: 50px;
   padding: 7px 20px;
+  margin-top: 20px;
+  margin-right: 57px;
   color: black;
   background-color: var(--brand-color);
 }
 
+.btn-payment:hover,
 .btn-checkout:hover {
   background-color: var(--brand-color-hover);
+}
+
+.btn-payment {
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  padding: 7px 20px;
+  margin-top: 20px;
+  margin-right: 57px;
+  width: 100%;
+  height: 6vh;
+  color: black;
+  font-size: 1.3em;
+  background-color: var(--brand-color);
 }
 
 .hidden {
@@ -190,9 +207,15 @@ footer {
 }
 
 .nav-link-back {
-  /* border: 1px solid black; */
-  margin-top: 10px;
+  padding-left: 0;
+  margin-top: 30px;
   width: 160px;
   text-align: left;
-  text-decoration: underline;
+
 }
+
+.nav-link-back-text {
+  text-decoration: underline;
+  margin-left: 5px;
+}
+
