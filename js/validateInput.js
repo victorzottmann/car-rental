@@ -22,7 +22,7 @@ $(document).ready(function() {
   
   $('.btn-payment').click((e) => { 
     e.preventDefault();
-    checkInputs();
+    validateInputs();
 
     const validInputs = document.getElementsByClassName('form-control input-success');
     const allInputsAreValid = validInputs.length == 6;
@@ -35,7 +35,7 @@ $(document).ready(function() {
     }   
   });
 
-  function checkInputs() {
+  function validateInputs() {
     let firstNameValue = firstName.value; 
     let lastNameValue  = lastName.value; 
     let emailValue  = email.value.trim(); 
