@@ -26,7 +26,7 @@ $(document).ready(function() {
             <h5 class="card-title" id="${car.model}-name">${car.brand} ${car.model}</h5><br />
             <p class="card-text">Mileage: <span id="${car.model}-mileage">${car.mileage} Km</span></p>
             <p class="card-text">Fuel type: <span id="${car.model}-fuel">${car.fuelType}</span></p>
-            <p class="card-text">Price per day: <span id="${car.model}-price">$${car.pricePerDay}.00</span></p>
+            <p class="card-text">Price per day: A$<span id="${car.model}-price">${car.pricePerDay}</span>.00</p>
             <button id="btn-${car.model}" class="btn-reserve">Reserve</button>
           </div>
         </div>
@@ -51,12 +51,13 @@ $(document).ready(function() {
         mileage: carMileage,
         fuel: carFuel,
         price: parseInt(carPrice),
-        inCart: car.inCart,
+        inCart: 0,
       }
 
       if (carStatus) {
         storeItem(carObject);
         calculateTotalCost(carObject);
+        updateCartCount(carObject);
         alert(`${carObject.name} was successfuly added to the cart.`)
       } else {
         alert("This car is currently unavailable. Please select another car.");
@@ -76,7 +77,7 @@ $(document).ready(function() {
           [carObject.tag]: carObject
         }
       }
-      cartItems[carObject.tag].inCart + 1;
+      cartItems[carObject.tag].inCart += 1;
     } else {
       carObject.inCart = 1;
       cartItems = {
@@ -98,6 +99,21 @@ $(document).ready(function() {
     }
   }
 
+  
+  function updateCartCount(carObject) {
+    let totalInCart = sessionStorage.getItem('totalInCart'); // returns a string
+    
+    if (totalInCart != null) {
+      totalInCart = parseInt(totalInCart);
+      sessionStorage.setItem('totalInCart', totalInCart + 1);
+      $('.cart-count').text(sessionStorage.getItem('totalInCart'))
+    } else {
+      sessionStorage.setItem('totalInCart', carObject.inCart);
+      $('.cart-count').text(sessionStorage.getItem('totalInCart'))
+    }
+    
+  }
+
 
   function displayCart() {
     let cartItems = sessionStorage.getItem('cars');
@@ -112,6 +128,7 @@ $(document).ready(function() {
         <tr id="${car.tag}" class="car-row">
           <td><img src="./img/${car.model}.jpeg" alt=""></td>
           <td>${car.name}</td>
+          <td>${car.inCart}</td>
           <td>$${car.price}.00</td>
           <td><input type="number" value="1" min="1" max="31"></td>
           <td><button id="${car.tag}" class="btn-remove">Remove</button></td>
@@ -122,9 +139,9 @@ $(document).ready(function() {
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
               <h6 class="my-0">${car.name}</h6>
-              <small class="text-muted">Mileage: ${car.mileage}</small>
+              <small class="text-muted">Quantity: ${car.inCart}</small>
             </div>
-            <span class="text-muted">$${car.price}.00</span>
+            <span class="text-muted">$${car.price * car.inCart}.00</span>
           </li>
         `;
       });
@@ -134,7 +151,7 @@ $(document).ready(function() {
     
     $('.checkout-list').prepend(checkoutOutput);
     $('.cart-table').append(cartOutput);
-    $('.cart-count').text(sessionStorage.getItem('carsAddedToCart'));
+    $('.cart-count').text(sessionStorage.getItem('totalInCart'));
     
     $(`.btn-remove`).click((e) => {
       let totalCost = sessionStorage.getItem('totalCost');

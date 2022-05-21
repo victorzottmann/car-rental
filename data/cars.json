@@ -10,8 +10,7 @@
       "seats": 5,
       "pricePerDay": 275,
       "availability": false,
-      "description": "",
-      "inCart": 0
+      "description": ""
     },
     {
       "category": "Sedan",
@@ -23,8 +22,7 @@
       "seats": 5,
       "pricePerDay": 120,
       "availability": true,
-      "description": "",
-      "inCart": 0
+      "description": ""
     },
     {
       "category": "Sedan",
@@ -36,8 +34,7 @@
       "seats": 5,
       "pricePerDay": 120,
       "availability": true,
-      "description": "",
-      "inCart": 0
+      "description": ""
     },
     {
       "category": "Sedan",
@@ -49,8 +46,7 @@
       "seats": 5,
       "pricePerDay": 120,
       "availability": true,
-      "description": "",
-      "inCart": 0
+      "description": ""
     },
     { 
       "category": "Sedan",
@@ -62,8 +58,7 @@
       "seats": 5,
       "pricePerDay": 110,
       "availability": true,
-      "description": "",
-      "inCart": 0
+      "description": ""
     },
     {
       "category": "Wagon",
@@ -75,8 +70,7 @@
       "seats": 7,
       "pricePerDay": 135,
       "availability": true,
-      "description": "",
-      "inCart": 0
+      "description": ""
     },
     { 
       "category": "Wagon",
@@ -88,8 +82,7 @@
       "seats": 7,
       "pricePerDay": 140,
       "availability": true,
-      "description": "",
-      "inCart": 0
+      "description": ""
     },
     {
       "category": "SUV",
@@ -101,8 +94,7 @@
       "seats": 7,
       "pricePerDay": 250,
       "availability": false,
-      "description": "",
-      "inCart": 0
+      "description": ""
     },
     {
       "category": "SUV",
@@ -114,8 +106,7 @@
       "seats": 7,
       "pricePerDay": 120,
       "availability": false,
-      "description": "",
-      "inCart": 0
+      "description": ""
     },
     {
       "category": "SUV",
@@ -127,8 +118,7 @@
       "seats": 7,
       "pricePerDay": 250,
       "availability": true,
-      "description": "",
-      "inCart": 0
+      "description": ""
     }
   ]
 }
