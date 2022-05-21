@@ -242,3 +242,7 @@ footer {
 sup {
   color: var(--error-color);
 }
+
+.container-breadcrumb {
+  height: 20px;
+}
