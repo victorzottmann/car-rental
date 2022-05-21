@@ -83,7 +83,7 @@ $(document).ready(function() {
     if (postCodeValue === '') {
       setErrorFor(postCode, 'Post code cannot be blank');
     } else if (!validPostCode(postCodeValue)) {
-      setErrorFor(postCode, 'Post code invalid. It must be an Australian post code.');
+      setErrorFor(postCode, 'Post code invalid.');
     } else {
       setSuccessFor(postCode);
       sessionStorage.setItem('postCode', postCodeValue);
@@ -109,6 +109,6 @@ $(document).ready(function() {
   }
 
   function validPostCode(postCode) {
-    return /[2-3]\d\d\d/.test(postCode);
+    return /[0-9]\d\d\d/.test(postCode);
   }
 });

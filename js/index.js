@@ -12,9 +12,6 @@ $(document).ready(function() {
   })();
 
   function showCar(car) {
-    let carAvailable = car.availability ? "Available" : "Unavailable";
-    let className = car.availability ? "car-available" : "car-unavailable";
-  
     const carModelLowerCase = car.model.split("-").join("").toLowerCase();
 
     let output = `
@@ -29,8 +26,7 @@ $(document).ready(function() {
             <h5 class="card-title" id="${car.model}-name">${car.brand} ${car.model}</h5><br />
             <p class="card-text">Mileage: <span id="${car.model}-mileage">${car.mileage} Km</span></p>
             <p class="card-text">Fuel type: <span id="${car.model}-fuel">${car.fuelType}</span></p>
-            <p class="card-text">Price per day: <span id="${car.model}-price">${car.pricePerDay}</span></p>
-            <p class="card-text"><span class="${className}">${carAvailable}</span></p>
+            <p class="card-text">Price per day: <span id="${car.model}-price">$${car.pricePerDay}.00</span></p>
             <button id="btn-${car.model}" class="btn-reserve">Reserve</button>
           </div>
         </div>
@@ -47,7 +43,6 @@ $(document).ready(function() {
       let carModel = car.model;
       let carStatus = car.availability;
       let carTag = carName.replace(/ /g, "").toLowerCase();
-      let carQtyInCart = car.inCart;
       
       let carObject = {
         tag: carTag,
@@ -56,7 +51,7 @@ $(document).ready(function() {
         mileage: carMileage,
         fuel: carFuel,
         price: parseInt(carPrice),
-        inCart: carQtyInCart,
+        inCart: car.inCart,
       }
 
       if (carStatus) {
