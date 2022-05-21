@@ -106,10 +106,10 @@ $(document).ready(function() {
     if (totalInCart != null) {
       totalInCart = parseInt(totalInCart);
       sessionStorage.setItem('totalInCart', totalInCart + 1);
-      $('.cart-count').text(sessionStorage.getItem('totalInCart'))
+      $('.cart-count').text(sessionStorage.getItem('totalInCart'));
     } else {
       sessionStorage.setItem('totalInCart', carObject.inCart);
-      $('.cart-count').text(sessionStorage.getItem('totalInCart'))
+      $('.cart-count').text(sessionStorage.getItem('totalInCart'));
     }
     
   }
@@ -157,11 +157,15 @@ $(document).ready(function() {
       let totalCost = sessionStorage.getItem('totalCost');
       totalCost = parseInt(totalCost);
 
+      let totalInCart = sessionStorage.getItem('totalInCart');
+      totalInCart = parseInt(totalInCart);
+
       let row = e.target.parentElement.parentElement;
       
       let productName = row.childNodes[3].innerText;
       productName = productName.split(" ").join("").toLowerCase();
       
+      sessionStorage.setItem('totalInCart', totalInCart - cartItems[productName].inCart);
       sessionStorage.setItem('totalCost', totalCost - cartItems[productName].price);
 
       delete cartItems[productName];

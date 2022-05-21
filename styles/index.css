@@ -84,14 +84,6 @@
   font-weight: lighter;
 }
 
-.car-available {
-  color: green;
-}
-
-.car-unavailable {
-  color: red;
-}
-
 .btn-remove {
   border: none;
   border-radius: 50px;
