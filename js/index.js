@@ -24,6 +24,7 @@ $(document).ready(function() {
           />
           <div class="card-body">
             <h5 class="card-title" id="${car.model}-name">${car.brand} ${car.model}</h5><br />
+            <p class="card-text">Category: <span id="${car.model}-category">${car.category}</span></p>
             <p class="card-text">Mileage: <span id="${car.model}-mileage">${car.mileage} Km</span></p>
             <p class="card-text">Fuel type: <span id="${car.model}-fuel">${car.fuelType}</span></p>
             <p class="card-text">Price per day: A$<span id="${car.model}-price">${car.pricePerDay}</span>.00</p>
@@ -122,6 +123,9 @@ $(document).ready(function() {
     let cartOutput = "";
     let checkoutOutput = "";
 
+    let allInputs = document.getElementsByClassName('rent-days');
+    console.log(allInputs);
+
     if (cartItems) {
       Object.values(cartItems).map(car => {
         cartOutput += `
@@ -130,7 +134,7 @@ $(document).ready(function() {
           <td>${car.name}</td>
           <td>${car.inCart}</td>
           <td>$${car.price}.00</td>
-          <td><input type="number" value="1" min="1" max="31"></td>
+          <td><input id="rent-days-${car.tag}" class="rent-days" type="number" value="1" min="1" max="31"></td>
           <td><button id="${car.tag}" class="btn-remove">Remove</button></td>
         </tr>
         `;
@@ -148,6 +152,8 @@ $(document).ready(function() {
 
       $('.btn-checkout').removeClass('hidden');
     } 
+
+    
     
     $('.checkout-list').prepend(checkoutOutput);
     $('.cart-table').append(cartOutput);
