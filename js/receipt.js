@@ -39,7 +39,10 @@ $(document).ready(function() {
     $('.receipt-items-table > tbody').append(receiptOutput);
 
     $('.btn-continue').click(() => {
-      console.log('Click');
+      sessionStorage.removeItem('cars');
+      sessionStorage.removeItem('totalCost');
+      sessionStorage.removeItem('totalInCart');
+      window.location.href = './index.html';
     })
   }
   displayItemsOnReceipt();

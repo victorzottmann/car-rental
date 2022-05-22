@@ -60,7 +60,7 @@ $(document).ready(function() {
     if (emailValue === '') {
       setErrorFor(email, 'Email address cannot be blank');
     } else if (!validEmailFormat(emailValue)) {
-      setErrorFor(email, 'Email is not valid');
+      setErrorFor(email, 'Email address is not valid');
     } else {
       setSuccessFor(email);
       sessionStorage.setItem('email', emailValue);
@@ -83,7 +83,7 @@ $(document).ready(function() {
     if (postCodeValue === '') {
       setErrorFor(postCode, 'Post code cannot be blank');
     } else if (!validPostCode(postCodeValue)) {
-      setErrorFor(postCode, 'Post code invalid.');
+      setErrorFor(postCode, 'Post code is not valid.');
     } else {
       setSuccessFor(postCode);
       sessionStorage.setItem('postCode', postCodeValue);

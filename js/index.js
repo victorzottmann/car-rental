@@ -11,6 +11,7 @@ $(document).ready(function() {
     }
   })();
 
+
   function showCar(car) {
     const carModelLowerCase = car.model.split("-").join("").toLowerCase();
 
@@ -56,52 +57,52 @@ $(document).ready(function() {
       }
 
       if (carStatus) {
-        storeItem(carObject);
+        storeCar(carObject);
         calculateTotalCost(carObject);
         updateCartCount(carObject);
         alert(`${carObject.name} was successfuly added to the cart.`)
       } else {
         alert("This car is currently unavailable. Please select another car.");
       }
-    });
-    
+    });   
   }
 
-  function storeItem(carObject) {
-    let cartItems = sessionStorage.getItem('cars');
-    cartItems = JSON.parse(cartItems);
+  function storeCar(car) {
+    let cars = sessionStorage.getItem('cars');
+    cars = JSON.parse(cars);
 
-    if (cartItems != null) {
-      if (cartItems[carObject.tag] == undefined) {
-        cartItems = {
-          ...cartItems,
-          [carObject.tag]: carObject
+    if (cars != null) {
+      if (cars[car.tag] == undefined) {
+        cars = {
+          ...cars,
+          [car.tag]: car
         }
       }
-      cartItems[carObject.tag].inCart += 1;
+      cars[car.tag].inCart += 1;
     } else {
-      carObject.inCart = 1;
-      cartItems = {
-        [carObject.tag]: carObject
+      car.inCart = 1;
+      cars = {
+        [car.tag]: car
       }
     }
 
-    sessionStorage.setItem("cars", JSON.stringify(cartItems));
+    sessionStorage.setItem("cars", JSON.stringify(cars));
   }
 
-  function calculateTotalCost(carObject) {
+
+  function calculateTotalCost(car) {
     let cartCost = sessionStorage.getItem('totalCost');
     
     if (cartCost != null) {
       cartCost = parseInt(cartCost);
-      sessionStorage.setItem('totalCost', cartCost += carObject.price);
+      sessionStorage.setItem('totalCost', cartCost += car.price);
     } else {
-      sessionStorage.setItem('totalCost', carObject.price);
+      sessionStorage.setItem('totalCost', car.price);
     }
   }
 
   
-  function updateCartCount(carObject) {
+  function updateCartCount(car) {
     let totalInCart = sessionStorage.getItem('totalInCart'); // returns a string
     
     if (totalInCart != null) {
@@ -109,7 +110,7 @@ $(document).ready(function() {
       sessionStorage.setItem('totalInCart', totalInCart + 1);
       $('.cart-count').text(sessionStorage.getItem('totalInCart'));
     } else {
-      sessionStorage.setItem('totalInCart', carObject.inCart);
+      sessionStorage.setItem('totalInCart', car.inCart);
       $('.cart-count').text(sessionStorage.getItem('totalInCart'));
     }
     
@@ -120,6 +121,11 @@ $(document).ready(function() {
     let cars = sessionStorage.getItem('cars');
     cars = JSON.parse(cars);
     
+    if (Object.keys(cars).length > 0) {
+      $('.cart-table').removeClass('hidden');
+      $('.btn-checkout').removeClass('hidden');
+    }
+
     let cartOutput = "";
     let checkoutOutput = "";
 
@@ -146,12 +152,10 @@ $(document).ready(function() {
           </li>
         `;
       });
-
-      $('.btn-checkout').removeClass('hidden');
     } 
 
     $('.checkout-list').prepend(checkoutOutput);
-    $('.cart-table').append(cartOutput);
+    $('.cart-table > tbody').append(cartOutput);
     $('.cart-count').text(sessionStorage.getItem('totalInCart'));
     
     $(`.btn-remove`).click((e) => {
@@ -175,12 +179,7 @@ $(document).ready(function() {
       sessionStorage.setItem('cars', JSON.stringify(cars));
       location.reload();
     });
-
-    if (Object.keys(cars).length == 0) {
-      $('.btn-checkout').addClass('hidden');
-    }
-
-  }
+  };
   displayCart();
 
 
@@ -206,8 +205,3 @@ $(document).ready(function() {
   }
   displayCheckout();
 });
-
-
-
-
-
