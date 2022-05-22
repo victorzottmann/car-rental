@@ -205,6 +205,7 @@ footer {
   margin-top: 30px;
   width: 160px;
   text-align: left;
+  color: black;
 }
 
 .nav-link-back-receipt {
@@ -237,4 +238,19 @@ sup {
 
 .container-breadcrumb {
   height: 20px;
+}
+
+
+.hello-message {
+  color: #e74c3c;
+}
+
+
+.receipt-table-row {
+  height: 40px;
+  text-align: left;
+}
+
+.receipt-row-title {
+  width: 200px;
 }

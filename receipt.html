@@ -48,10 +48,41 @@
     <div class="container container-receipt">
       <h3>Receipt</h3>
       <br />
+      <h4 class="hello-message">Hello <span class="hello-message-customer"></span>,</h4>
+      <br />
+      <h5>Thank you for booking with Hertz-UTS!</h5>
+      <p>Please find the delivery details of your order in the section below.</p>
+      <table class="table table-sm receipt-table">
+        <tbody>
+          <tr class="receipt-table-row">
+            <th class="receipt-row-title" scope="row">Customer name: </th>
+            <td><span class="receipt-customer-name"></span></td>
+          </tr>
+          <tr class="receipt-table-row">
+            <th scope="row">Customer email:</th>
+            <td><span class="receipt-email"></span></td>
+          </tr>
+          <tr class="receipt-table-row">
+            <th scope="row">Street Address:</th>
+            <td><span class="receipt-street"></span></td>
+          </tr>
+          <tr class="receipt-table-row">
+            <th scope="row">City:</th>
+            <td><span class="receipt-city"></span></td>
+          </tr>
+          <tr class="receipt-table-row">
+            <th scope="row">Post Code:</th>
+            <td><span class="receipt-post-code"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <h4>Items</h4>
     </div>
   </main>
 
   <script type="text/javascript" src="./js/index.js"></script>
+  <script type="text/javascript" src="./js/receipt.js"></script>
 </body>
 
 </html>

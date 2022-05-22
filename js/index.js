@@ -117,8 +117,8 @@ $(document).ready(function() {
 
 
   function displayCart() {
-    let cartItems = sessionStorage.getItem('cars');
-    cartItems = JSON.parse(cartItems);
+    let cars = sessionStorage.getItem('cars');
+    cars = JSON.parse(cars);
     
     let cartOutput = "";
     let checkoutOutput = "";
@@ -126,19 +126,19 @@ $(document).ready(function() {
     let allInputs = document.getElementsByClassName('rent-days');
     console.log(allInputs);
 
-    if (cartItems) {
-      Object.values(cartItems).map(car => {
+    if (cars) {
+      Object.values(cars).map(car => {
         cartOutput += `
-        <tr id="${car.tag}" class="car-row">
-          <td><img src="./img/${car.model}.jpeg" alt=""></td>
-          <td>${car.name}</td>
-          <td>${car.inCart}</td>
-          <td>$${car.price}.00</td>
-          <td><input id="rent-days-${car.tag}" class="rent-days" type="number" value="1" min="1" max="31"></td>
-          <td><button id="${car.tag}" class="btn-remove">Remove</button></td>
-        </tr>
+          <tr id="${car.tag}" class="car-row">
+            <td><img src="./img/${car.model}.jpeg" alt="Thumbnail of the car ${car.name}"></td>
+            <td>${car.name}</td>
+            <td>${car.inCart}</td>
+            <td>$${car.price}.00</td>
+            <td><input id="rent-days-${car.tag}" class="rent-days" type="number" value="1" min="1" max="31"></td>
+            <td><button id="${car.tag}" class="btn-remove">Remove</button></td>
+          </tr>
         `;
-
+ 
         checkoutOutput += `
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
@@ -153,8 +153,6 @@ $(document).ready(function() {
       $('.btn-checkout').removeClass('hidden');
     } 
 
-    
-    
     $('.checkout-list').prepend(checkoutOutput);
     $('.cart-table').append(cartOutput);
     $('.cart-count').text(sessionStorage.getItem('totalInCart'));
@@ -168,20 +166,20 @@ $(document).ready(function() {
 
       let row = e.target.parentElement.parentElement;
       
-      let productName = row.childNodes[3].innerText;
-      productName = productName.split(" ").join("").toLowerCase();
-      
-      sessionStorage.setItem('totalInCart', totalInCart - cartItems[productName].inCart);
-      sessionStorage.setItem('totalCost', totalCost - cartItems[productName].price);
+      let carName = row.childNodes[3].innerText;
+      carName = carName.split(" ").join("").toLowerCase();
 
-      delete cartItems[productName];
+      sessionStorage.setItem('totalInCart', totalInCart - cars[carName].inCart);
+      sessionStorage.setItem('totalCost', totalCost - cars[carName].price);
+
+      delete cars[carName];
       row.remove();
 
-      sessionStorage.setItem('cars', JSON.stringify(cartItems));
+      sessionStorage.setItem('cars', JSON.stringify(cars));
       location.reload();
     });
 
-    if (Object.keys(cartItems).length == 0) {
+    if (Object.keys(cars).length == 0) {
       $('.btn-checkout').addClass('hidden');
     }
 
