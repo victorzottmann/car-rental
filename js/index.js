@@ -123,9 +123,6 @@ $(document).ready(function() {
     let cartOutput = "";
     let checkoutOutput = "";
 
-    let allInputs = document.getElementsByClassName('rent-days');
-    console.log(allInputs);
-
     if (cars) {
       Object.values(cars).map(car => {
         cartOutput += `

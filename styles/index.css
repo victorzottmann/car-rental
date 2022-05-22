@@ -240,11 +240,9 @@ sup {
   height: 20px;
 }
 
-
 .hello-message {
   color: #e74c3c;
 }
-
 
 .receipt-table-row {
   height: 40px;
@@ -254,3 +252,23 @@ sup {
 .receipt-row-title {
   width: 200px;
 }
+
+.receipt-items-table {
+  position: relative;
+  top: -20px;
+}
+
+.receipt-items-table tbody td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.receipt-items-img {
+  width: 80px;
+}
+
+.container-continue {
+  display: flex;
+  justify-content: flex-end;
+}
+
