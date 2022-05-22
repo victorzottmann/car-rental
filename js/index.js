@@ -158,7 +158,7 @@ $(document).ready(function() {
     $('.cart-table > tbody').append(cartOutput);
     $('.cart-count').text(sessionStorage.getItem('totalInCart'));
     
-    $(`.btn-remove`).click((e) => {
+    $('.btn-remove').click((e) => {
       let totalCost = sessionStorage.getItem('totalCost');
       totalCost = parseInt(totalCost);
 

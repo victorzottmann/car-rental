@@ -29,9 +29,6 @@ $(document).ready(function() {
 
     if (allInputsAreValid) {
       window.location.href = './receipt.html';
-    } else {
-      console.log('Not Yet');
-      console.log(validInputs.length);
     }   
   });
 
