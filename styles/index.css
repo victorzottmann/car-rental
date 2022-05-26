@@ -291,3 +291,7 @@ sup {
 #checkout-form select {
   height: 45px;
 }
+
+.container-receipt {
+  margin-top: 35px;
+}

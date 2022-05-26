@@ -25,9 +25,10 @@ $(document).ready(function() {
 
     if (cars) {
       Object.values(cars).map(car => {
+        let carModelLowerCase = car.model.split("-").join("").toLowerCase();
         receiptOutput += `
           <tr id="${car.tag}" class="receipt-table-row">
-            <td><img class="receipt-items-img" src="./img/${car.model}.jpeg" alt="Thumbnail of the car ${car.name}"></td>
+            <td><img class="receipt-items-img" src="./img/${carModelLowerCase}.jpeg" alt="Thumbnail of the car ${car.name}"></td>
             <td>${car.name}</td>
             <td>${car.inCart}</td>
             <td>$${car.price}.00</td>

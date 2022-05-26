@@ -8,7 +8,7 @@
       "mileage": 5638,
       "fuelType": "petrol",
       "seats": 5,
-      "pricePerDay": 275,
+      "pricePerDay": 220,
       "availability": false,
       "description": ""
     },
@@ -20,7 +20,7 @@
       "mileage": 11245,
       "fuelType": "petrol",
       "seats": 5,
-      "pricePerDay": 120,
+      "pricePerDay": 145,
       "availability": true,
       "description": ""
     },
@@ -32,7 +32,7 @@
       "mileage": 7086,
       "fuelType": "petrol",
       "seats": 5,
-      "pricePerDay": 120,
+      "pricePerDay": 110,
       "availability": true,
       "description": ""
     },
@@ -44,7 +44,7 @@
       "mileage": 46012,
       "fuelType": "petrol",
       "seats": 5,
-      "pricePerDay": 120,
+      "pricePerDay": 140,
       "availability": true,
       "description": ""
     },
@@ -56,7 +56,7 @@
       "mileage": 35271,
       "fuelType": "petrol",
       "seats": 5,
-      "pricePerDay": 110,
+      "pricePerDay": 95,
       "availability": true,
       "description": ""
     },
@@ -68,7 +68,7 @@
       "mileage": 6230,
       "fuelType": "petrol",
       "seats": 7,
-      "pricePerDay": 135,
+      "pricePerDay": 105,
       "availability": true,
       "description": ""
     },
@@ -79,8 +79,8 @@
       "modelYear": 2019,
       "mileage": 26431,
       "fuelType": "petrol",
-      "seats": 7,
-      "pricePerDay": 140,
+      "seats": 4,
+      "pricePerDay": 160,
       "availability": true,
       "description": ""
     },
@@ -91,8 +91,8 @@
       "modelYear": 2018,
       "mileage": 5148,
       "fuelType": "petrol",
-      "seats": 7,
-      "pricePerDay": 250,
+      "seats": 5,
+      "pricePerDay": 175,
       "availability": false,
       "description": ""
     },
@@ -104,7 +104,7 @@
       "mileage": 15653,
       "fuelType": "petrol",
       "seats": 7,
-      "pricePerDay": 120,
+      "pricePerDay": 140,
       "availability": false,
       "description": ""
     },
@@ -116,7 +116,7 @@
       "mileage": 14637,
       "fuelType": "petrol",
       "seats": 5,
-      "pricePerDay": 250,
+      "pricePerDay": 220,
       "availability": true,
       "description": ""
     }

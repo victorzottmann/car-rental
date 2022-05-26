@@ -19,32 +19,16 @@
         <a class="navbar-brand" href="index.html">
           Hertz - UTS
         </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">
-                Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="nav-link-cart" href="cart.html">
-                Cart 
-              </a>
-            </li>
-          </ul>
-        </div>
+        <!-- The navbar items (Home and Cart) are hidden on purpose
+        The reason is to make the user click on the Continue Shopping button to return to the Home page
+        This will delete the session items, but maintain the user details filled in the payment form
+        Obviously, the user can still go home by clicking on the website title. I am not sure how to make it possible
+        to delete all session items when clicking on the title only from the receipt page.  -->
       </div>
     </nav>
   </header>
 
   <main>
-    <div class="container">
-      <a class="nav-link nav-link-back nav-link-back-receipt" href="checkout.html">
-        < <span class="nav-link-back-text">Back to Checkout</span>
-      </a>
-      <br />
-    </div>
-
     <div class="container container-receipt">
       <h3>Receipt</h3>
       <br />

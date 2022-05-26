@@ -67,6 +67,10 @@ $(document).ready(function() {
     });   
   }
 
+  // To learn how to manipulate the session storage correctly, 
+  // I referenced a YouTube tutorial series by Telmo Sampaio (Parts 2 - 4).
+  // The code has been significantly modified to suit the needs of this assignment. 
+  // Please refer to the README.md file for all the references.
   function storeCar(car) {
     let cars = sessionStorage.getItem('cars');
     cars = JSON.parse(cars);
@@ -90,6 +94,8 @@ $(document).ready(function() {
   }
 
 
+  // Referenced and adapted from the same source as above (Telmo Sampaio).
+  // Please refer to the README.md file for all the references.
   function calculateTotalCost(car) {
     let cartCost = sessionStorage.getItem('totalCost');
     
@@ -101,7 +107,9 @@ $(document).ready(function() {
     }
   }
 
-  
+
+  // Referenced and adapted from the same source as above (Telmo Sampaio).
+  // Please refer to the README.md file for all the references.
   function updateCartCount(car) {
     let totalInCart = sessionStorage.getItem('totalInCart'); // returns a string
     
@@ -113,13 +121,18 @@ $(document).ready(function() {
       sessionStorage.setItem('totalInCart', car.inCart);
       $('.cart-count').text(sessionStorage.getItem('totalInCart'));
     }
-    
   }
 
 
   function displayCart() {
     let cars = sessionStorage.getItem('cars');
     cars = JSON.parse(cars);
+
+    let totalCost = sessionStorage.getItem('totalCost');
+    totalCost = parseInt(totalCost);
+
+    let totalInCart = sessionStorage.getItem('totalInCart');
+    totalInCart = parseInt(totalInCart);
     
     if (Object.keys(cars).length > 0) {
       $('.cart-table').removeClass('hidden');
@@ -131,9 +144,11 @@ $(document).ready(function() {
 
     if (cars) {
       Object.values(cars).map(car => {
+        let carModelLowerCase = car.model.split("-").join("").toLowerCase();
+        
         cartOutput += `
           <tr id="${car.tag}" class="car-row">
-            <td><img src="./img/${car.model}.jpeg" alt="Thumbnail of the car ${car.name}"></td>
+            <td><img src="./img/${carModelLowerCase}.jpeg" alt="Thumbnail of the car ${car.name}"></td>
             <td>${car.name}</td>
             <td>${car.inCart}</td>
             <td>$${car.price}.00</td>
@@ -159,12 +174,6 @@ $(document).ready(function() {
     $('.cart-count').text(sessionStorage.getItem('totalInCart'));
     
     $('.btn-remove').click((e) => {
-      let totalCost = sessionStorage.getItem('totalCost');
-      totalCost = parseInt(totalCost);
-
-      let totalInCart = sessionStorage.getItem('totalInCart');
-      totalInCart = parseInt(totalInCart);
-
       let row = e.target.parentElement.parentElement;
       
       let carName = row.childNodes[3].innerText;
