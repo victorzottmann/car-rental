@@ -3,6 +3,8 @@
 #### Student: Victor P. Zottmann
 #### Student ID: 14226207
 ---
+#### **Deployment link:** http://hertz-env.eba-udinc8jg.us-east-1.elasticbeanstalk.com/
+---
 ## References
 
 To learn how to manipulate the session storage correctly and how to validate input fields, I referenced two developers and content creators, namely Florin Pop and Telmo Sampaio, as cited below. Access to the code repositories were made available for free by the authors.
