@@ -180,7 +180,7 @@ input[type=number] {
   border-radius: 50px;
   padding: 7px 20px;
   margin-top: 20px;
-  margin-right: 47px;
+  margin-right: 40px;
   color: black;
   background-color: var(--brand-color);
 }
@@ -290,6 +290,10 @@ sup {
 #checkout-form input,
 #checkout-form select {
   height: 45px;
+}
+
+.container-cart {
+  margin-bottom: 100px;
 }
 
 .container-receipt {
