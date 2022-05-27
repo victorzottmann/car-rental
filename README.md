@@ -3,7 +3,7 @@
 #### Student: Victor P. Zottmann
 #### Student ID: 14226207
 ---
-#### **Deployment link:** http://hertz-env.eba-udinc8jg.us-east-1.elasticbeanstalk.com/
+#### **Deployment link:** http://hertzuts-env.eba-ep5t856s.us-east-1.elasticbeanstalk.com/
 ---
 ## References
 
