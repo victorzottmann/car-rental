@@ -20,6 +20,11 @@ $(document).ready(function() {
   function displayItemsOnReceipt() {
     let cars = sessionStorage.getItem('cars');
     cars = JSON.parse(cars);
+
+    let totalCost = sessionStorage.getItem('totalCost');
+    totalCost = parseInt(totalCost);
+
+    console.log(totalCost);
     
     let receiptOutput = "";
 
@@ -37,6 +42,7 @@ $(document).ready(function() {
         `;
       });
     } 
+    $('.receipt-total-paid').text(`$${totalCost}.00`);
     $('.receipt-items-table > tbody').append(receiptOutput);
 
     $('.btn-continue').click(() => {
