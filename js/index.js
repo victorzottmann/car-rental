@@ -4,13 +4,12 @@ $(document).ready(function() {
       $.ajax({
         type: "GET",
         url: "../data/cars.json",
-        success: ({ cars }) => cars.forEach(car => showCar(car))
+        success: ({ cars }) => cars.forEach(car => showCar(car)),
       });
     } catch (error) {
       console.log(error);
     }
   })();
-
 
   function showCar(car) {
     const carModelLowerCase = car.model.split("-").join("").toLowerCase();
@@ -60,17 +59,13 @@ $(document).ready(function() {
         storeCar(carObject);
         calculateTotalCost(carObject);
         updateCartCount(carObject);
-        alert(`${carObject.name} was successfuly added to the cart.`)
+        alert(`${carObject.name} was successfuly added to the cart.`);
       } else {
         alert("This car is currently unavailable. Please select another car.");
       }
     });   
   }
 
-  // To learn how to manipulate the session storage correctly, 
-  // I referenced a YouTube tutorial series by Telmo Sampaio (Parts 2 - 4).
-  // The code has been significantly modified to suit the needs of this assignment. 
-  // Please refer to the README.md file for all the references.
   function storeCar(car) {
     let cars = sessionStorage.getItem('cars');
     cars = JSON.parse(cars);
@@ -93,9 +88,6 @@ $(document).ready(function() {
     sessionStorage.setItem("cars", JSON.stringify(cars));
   }
 
-
-  // Referenced and adapted from the same source as above (Telmo Sampaio).
-  // Please refer to the README.md file for all the references.
   function calculateTotalCost(car) {
     let cartCost = sessionStorage.getItem('totalCost');
     
@@ -107,9 +99,6 @@ $(document).ready(function() {
     }
   }
 
-
-  // Referenced and adapted from the same source as above (Telmo Sampaio).
-  // Please refer to the README.md file for all the references.
   function updateCartCount(car) {
     let totalInCart = sessionStorage.getItem('totalInCart'); // returns a string
     

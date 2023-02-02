@@ -87,8 +87,6 @@ $(document).ready(function() {
     }
   }
 
-  // These input validation functions are adapted from a YouTube tutorial created by Florin Pop.
-  // Please refer to the README.md file for all the references.
   function setInputErrorFor(input, message) {
     let inputId = input.getAttribute('id');
     $(`#invalid-${inputId}`).text(message);
@@ -104,12 +102,10 @@ $(document).ready(function() {
   }
 
   function validEmailFormat(email) {
-    // This regex is referenced from w3resource. Please refer to the README.md file for all the references.
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
   }
 
   function validPostCode(postCode) {
-    // This regex is not referenced from anywhere -- I learned the basics a while ago.
     return /[0-9]\d\d\d/.test(postCode);
   }
 });
