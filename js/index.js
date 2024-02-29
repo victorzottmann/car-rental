@@ -116,25 +116,25 @@ $(document).ready(function() {
   function displayCart() {
     let cars = sessionStorage.getItem('cars');
     cars = JSON.parse(cars);
-
+  
     let totalCost = sessionStorage.getItem('totalCost');
     totalCost = parseInt(totalCost);
-
+  
     let totalInCart = sessionStorage.getItem('totalInCart');
     totalInCart = parseInt(totalInCart);
-    
+  
     if (Object.keys(cars).length > 0) {
       $('.cart-table').removeClass('hidden');
       $('.btn-checkout').removeClass('hidden');
     }
-
+  
     let cartOutput = "";
     let checkoutOutput = "";
-
+  
     if (cars) {
       Object.values(cars).map(car => {
         let carModelLowerCase = car.model.split("-").join("").toLowerCase();
-        
+  
         cartOutput += `
           <tr id="${car.tag}" class="car-row">
             <td><img src="./img/${carModelLowerCase}.jpeg" alt="Thumbnail of the car ${car.name}"></td>
@@ -145,7 +145,7 @@ $(document).ready(function() {
             <td><button id="${car.tag}" class="btn-remove">Remove</button></td>
           </tr>
         `;
- 
+  
         checkoutOutput += `
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
@@ -156,28 +156,28 @@ $(document).ready(function() {
           </li>
         `;
       });
-    } 
-
+    }
+  
     $('.checkout-list').prepend(checkoutOutput);
     $('.cart-table > tbody').append(cartOutput);
     $('.cart-count').text(sessionStorage.getItem('totalInCart'));
-    
+  
     $('.btn-remove').click((e) => {
       let row = e.target.parentElement.parentElement;
-      
+  
       let carName = row.childNodes[3].innerText;
       carName = carName.split(" ").join("").toLowerCase();
-
+  
       sessionStorage.setItem('totalInCart', totalInCart - cars[carName].inCart);
       sessionStorage.setItem('totalCost', totalCost - cars[carName].price);
-
+  
       delete cars[carName];
       row.remove();
-
+  
       sessionStorage.setItem('cars', JSON.stringify(cars));
       location.reload();
     });
-  };
+  }
   displayCart();
 
 
