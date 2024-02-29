@@ -1,6 +1,6 @@
 :root {
   --brand-color: #ffd100;
-  --brand-color-hover: #e3ba03; 
+  --brand-color-hover: #e3ba03;
   --success-color: #2ecc71;
   --error-color: #e74c3c;
 }
@@ -12,7 +12,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 footer {
@@ -26,11 +26,13 @@ footer {
 
 .navbar {
   height: 80px;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .navbar-brand {
   font-size: 2em;
-  color: var(--brand-color) !important;
+  color: var(--brand-color);
 }
 
 .nav-item:nth-child(1) {
@@ -48,12 +50,16 @@ footer {
   background-color: var(--brand-color-hover);
 }
 
+.nav-link.active {
+  color: white;
+}
+
 .nav-link {
   font-size: 1.2em;
 }
 
 #nav-link-cart {
-  color: black !important;
+  color: black;
 }
 
 .container {
@@ -61,8 +67,8 @@ footer {
 }
 
 .container-fluid {
-  margin: 0 20px; 
-  padding-top: 10px; 
+  margin: 0 20px;
+  padding-top: 10px;
   padding-bottom: 10px;
 }
 
@@ -297,4 +303,10 @@ sup {
 
 .container-receipt {
   margin-top: 35px;
+}
+
+@media (min-width: 992px) {
+  .navbar-nav {
+    width: 100vw;
+  }
 }
