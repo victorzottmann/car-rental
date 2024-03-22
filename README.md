@@ -1,4 +1,4 @@
-# Victor's Car Rental - A Hertz Clone
+# Victor's Car Rental System
 
 ---
 #### **Deployment link:** https://victorz-car-rental.netlify.app
